@@ -1,0 +1,2506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Namespace xmlns:Formula="http://www.edgerater.com" Name="FML" Version="1.0.0.130">
+  <Namespaces>
+    <Namespace Name="OB" Version="" Description="">
+      <Namespaces>
+        <Namespace Name="My Indicators" Version="" Description="">
+          <Namespaces />
+          <Programs>
+            <Program Name="KL_RLxSLOPE_Sectors">
+              <FullName />
+              <Description>zScore of RLxSLOPE SPY, XLE, XLB, XLF, XLK, XME</Description>
+              <Code>// ZSCORE RLxSLOPE positive and falling
+// xPeriod = rl slope lookback
+// Lookback = lookback for average and std
+ 
+SC_SPY:= Fml(Sym_SPY,'C');
+SC_XLE:= Fml(Sym_XLE,'C');
+SC_XLB:= Fml(Sym_XLB,'C');
+SC_XLF:= Fml(Sym_XLF,'C');
+SC_XLK:= Fml(Sym_XLK,'C');
+SC_XME:= Fml(Sym_XME,'C');
+
+//
+RLxSPY:= LRC(SC_SPY,xPeriod);
+RLxSLPE_SPY:= (RLxSPY - Ref(RLxSPY, xPeriod))/ xPeriod;
+
+
+SD1SPY:= STD(RLxSLPE_SPY, Lookback);
+AV1SPY:= MA(RLxSLPE_SPY, Lookback);
+ 
+Z1SPY: (RLxSLPE_SPY-AV1SPY)/SD1SPY,width2;
+//
+RLxXLE:= LRC(SC_XLE,xPeriod);
+RLxSLPE_XLE:= (RLxXLE - Ref(RLxXLE, xPeriod))/ xPeriod;
+
+
+SD1XLE:= STD(RLxSLPE_XLE, Lookback);
+AV1XLE:= MA(RLxSLPE_XLE, Lookback);
+ 
+Z1XLE: (RLxSLPE_XLE-AV1XLE)/SD1XLE,width2;
+//
+RLxXLB:= LRC(SC_XLB,xPeriod);
+RLxSLPE_XLB:= (RLxXLB - Ref(RLxXLB, xPeriod))/ xPeriod;
+
+SD1XLB:= STD(RLxSLPE_XLB, Lookback);
+AV1XLB:= MA(RLxSLPE_XLB, Lookback);
+ 
+Z1XLB: (RLxSLPE_XLB-AV1XLB)/SD1XLB,width2;
+//
+RLxXLF:= LRC(SC_XLF,xPeriod);
+RLxSLPE_XLF:= (RLxXLF - Ref(RLxXLF, xPeriod))/ xPeriod;
+
+SD1XLF:= STD(RLxSLPE_XLF, Lookback);
+AV1XLF:= MA(RLxSLPE_XLF, Lookback);
+ 
+Z1XLF: (RLxSLPE_XLF-AV1XLF)/SD1XLF,width2;
+//
+RLxXLK:= LRC(SC_XLK,xPeriod);
+RLxSLPE_XLK:= (RLxXLK - Ref(RLxXLK, xPeriod))/ xPeriod;
+
+SD1XLK:= STD(RLxSLPE_XLK, Lookback);
+AV1XLK:= MA(RLxSLPE_XLK, Lookback);
+ 
+Z1XLK: (RLxSLPE_XLK-AV1XLK)/SD1XLK,width2;
+//
+RLxXME:= LRC(SC_XME,xPeriod);
+RLxSLPE_XME:= (RLxXME - Ref(RLxXME, xPeriod))/ xPeriod;
+
+SD1XME:= STD(RLxSLPE_XME, Lookback);
+AV1XME:= MA(RLxSLPE_XME, Lookback);
+ 
+Z1XME: (RLxSLPE_XME-AV1XME)/SD1XME,width3;
+
+3;
+2;
+1;
+0;
+-1;
+-2;
+-3 ;
+
+@SETHLINE(3, 2, 1, 0, -1, -2, -3);
+ </Code>
+              <Params>
+                <FormulaParam Name="Sym_XLE" DefaultValue="XLE" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+                <FormulaParam Name="Sym_XLB" DefaultValue="XLB" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+                <FormulaParam Name="Sym_XLF" DefaultValue="XLF" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+                <FormulaParam Name="Sym_XLK" DefaultValue="XLK" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+                <FormulaParam Name="Sym_XME" DefaultValue="XME" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+                <FormulaParam Name="xPeriod" DefaultValue="22" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Lookback" DefaultValue="130" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Sym_SPY" DefaultValue="SPY" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+              </Params>
+            </Program>
+            <Program Name="KL_RL10_30_90_plots">
+              <FullName />
+              <Description>  RLxSLOPE plots</Description>
+              <Code>//Plots RL10-30-90   
+ 
+RL10:  LRC(C,8),Width2,ColorBlue;
+RL30:  LRC(C,24),Width2,ColorBlack;
+RL90:  LRC(C,72),Width2,ColorRed;
+
+ </Code>
+              <Params />
+            </Program>
+            <Program Name="KL_RLxSLOPE_XME_Sectors">
+              <FullName />
+              <Description>zScore of RLxSLOPE SPY, XLE, XLB, XLF, XLK, XME</Description>
+              <Code>// ZSCORE RLxSLOPE positive and falling
+// xPeriod = rl slope lookback
+// Lookback = lookback for average and std
+ 
+ SC_SPY:= Fml(Sym_SPY,'C');
+SC_X:= Fml(Sym_X,'C');
+SC_CLF:= Fml(Sym_CLF,'C');
+SC_AA:= Fml(Sym_AA,'C');
+SC_STLD:= Fml(Sym_STLD,'C');
+SC_CAT:= Fml(Sym_CAT,'C');
+SC_XME:= Fml(Sym_XME,'C');
+
+
+//
+RLxSPY:= LRC(SC_SPY,xPeriod);
+RLxSLPE_SPY:= (RLxSPY - Ref(RLxSPY, xPeriod))/ xPeriod;
+
+SD1SPY:= STD(RLxSLPE_SPY, Lookback);
+AV1SPY:= MA(RLxSLPE_SPY, Lookback);
+ 
+Z1SPY: (RLxSLPE_SPY-AV1SPY)/SD1SPY;
+//
+RLxX:= LRC(SC_X,xPeriod);
+RLxSLPE_X:= (RLxX - Ref(RLxX, xPeriod))/ xPeriod;
+
+
+SD1X:= STD(RLxSLPE_X, Lookback);
+AV1X:= MA(RLxSLPE_X, Lookback);
+ 
+Z1X: (RLxSLPE_X-AV1X)/SD1X;
+//
+RLxCLF:= LRC(SC_CLF,xPeriod);
+RLxSLPE_CLF:= (RLxCLF - Ref(RLxCLF, xPeriod))/ xPeriod;
+
+SD1CLF:= STD(RLxSLPE_CLF, Lookback);
+AV1CLF:= MA(RLxSLPE_CLF, Lookback);
+ 
+Z1CLF: (RLxSLPE_CLF-AV1CLF)/SD1CLF;
+//
+RLxAA:= LRC(SC_AA,xPeriod);
+RLxSLPE_AA:= (RLxAA - Ref(RLxAA, xPeriod))/ xPeriod;
+
+SD1AA:= STD(RLxSLPE_AA, Lookback);
+AV1AA:= MA(RLxSLPE_AA, Lookback);
+ 
+Z1AA: (RLxSLPE_AA-AV1AA)/SD1AA;
+//
+RLxSTLD:= LRC(SC_STLD,xPeriod);
+RLxSLPE_STLD:= (RLxSTLD - Ref(RLxSTLD, xPeriod))/ xPeriod;
+
+SD1STLD:= STD(RLxSLPE_STLD, Lookback);
+AV1STLD:= MA(RLxSLPE_STLD, Lookback);
+ 
+Z1STLD: (RLxSLPE_STLD-AV1STLD)/SD1STLD;
+//
+RLxCAT:= LRC(SC_CAT,xPeriod);
+RLxSLPE_CAT:= (RLxCAT - Ref(RLxCAT, xPeriod))/ xPeriod;
+
+SD1CAT:= STD(RLxSLPE_CAT, Lookback);
+AV1CAT:= MA(RLxSLPE_CAT, Lookback);
+ 
+Z1CAT: (RLxSLPE_CAT-AV1CAT)/SD1CAT;
+//
+RLxXME:= LRC(SC_XME,xPeriod);
+RLxSLPE_XME:= (RLxXME - Ref(RLxXME, xPeriod))/ xPeriod;
+
+SD1XME:= STD(RLxSLPE_XME, Lookback);
+AV1XME:= MA(RLxSLPE_XME, Lookback);
+ 
+Z1XME: (RLxSLPE_XME-AV1XME)/SD1XME;
+
+
+ zp1: 1;
+zp2: 2;
+zp3: 3;
+zn1: -1;
+zn2: -2;
+zn3: -3;
+zero: 0;
+
+ </Code>
+              <Params>
+                <FormulaParam Name="Sym_AA" DefaultValue="AA" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+                <FormulaParam Name="Sym_CLF" DefaultValue="CLF" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+                <FormulaParam Name="Sym_CAT" DefaultValue="CAT" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+                <FormulaParam Name="Sym_STLD" DefaultValue="STLD" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+                <FormulaParam Name="Sym_XME" DefaultValue="XME" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+                <FormulaParam Name="xPeriod" DefaultValue="22" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Lookback" DefaultValue="130" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Sym_X" DefaultValue="X" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+                <FormulaParam Name="Sym_SPY" DefaultValue="SPY" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+              </Params>
+            </Program>
+            <Program Name="KL_RL10_30_90_ZSLOPE">
+              <FullName />
+              <Description>zScore of RLxSLOPE</Description>
+              <Code>// ZSCORE RL10-30-90   
+// Lookback = lookback for average and std
+ 
+ 
+RL10:= LRC(C,8);
+RL30:= LRC(C,24);
+RL90:= LRC(C,72);
+
+RL10SLPE:= (RL10 - Ref(RL10, 8))/ 8;
+
+SD10:= STD(RL10SLPE, 2500);
+AV10:= MA(RL10SLPE, 2500);
+ Z10: (RL10SLPE-AV10)/SD10,Width2,ColorBlue;
+
+RL30SLPE:= (RL30 - Ref(RL30, 24))/ 24;
+
+SD30:= STD(RL30SLPE, 2500);
+AV30:= MA(RL30SLPE, 2500);
+ Z30: (RL30SLPE-AV30)/SD30,Width3,ColorBlack;
+
+RL90SLPE:= (RL90 - Ref(RL90, 72))/ 72;
+
+SD90:= STD(RL90SLPE, 2500);
+AV90:= MA(RL90SLPE, 2500);
+ Z90: (RL90SLPE-AV90)/SD90,Width3,ColorRed;
+
+
+ 1;
+2;
+3;
+ -1;
+ -2;
+ -3;
+0;
+
+ </Code>
+              <Params />
+            </Program>
+          </Programs>
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="My Scans" Version="" Description="">
+          <Namespaces />
+          <Programs>
+            <Program Name="KL_RL10xPSAR_scan_LongEntry">
+              <FullName />
+              <Description />
+              <Code>Event:Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit));</Code>
+              <Params>
+                <FormulaParam Name="FastPeriod" DefaultValue="10" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Acc" DefaultValue="0.02" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="AccLimit" DefaultValue="0.14" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_RL10xPSAR_scan_LongExit">
+              <FullName />
+              <Description />
+              <Code>Event:Cross(PSAR_F(LRC(C, FastPeriod),Acc, AccLimit),LRC(C, FastPeriod));</Code>
+              <Params>
+                <FormulaParam Name="FastPeriod" DefaultValue="10" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Acc" DefaultValue="0.02" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="AccLimit" DefaultValue="0.14" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_SCAN_3DD">
+              <FullName />
+              <Description>EXIT ON 3 DAYS DOWN</Description>
+              <Code>//  11/13/2023 Long entry Exit if close &lt; x bar close
+
+Event: C &lt; REF(C, 1) &amp; REF(C,1) &lt; REF(C,2) &amp; REF(C,2) &lt; REF(C,3); 
+ </Code>
+              <Params />
+            </Program>
+            <Program Name="KL_Buy_Hold_Long">
+              <FullName />
+              <Description>Buy and Hold</Description>
+              <Code>Event: C &gt; 0;</Code>
+              <Params />
+            </Program>
+            <Program Name="KL_scan_Long_2Bar_Exit">
+              <FullName />
+              <Description>Scan to exit if close is below previous x bar low</Description>
+              <Code>//  11/13/2023 Long entry Exit if close &lt; x bar close
+
+Event: C &lt; REF(C, BARS); 
+ </Code>
+              <Params>
+                <FormulaParam Name="BARS" DefaultValue="2" MinValue="1" MaxValue="100" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_scan_Long_xATR_Exit">
+              <FullName />
+              <Description>Scan to exit if close is below previous x bar low</Description>
+              <Code>// 11/16/2023 Exit if Close &lt; Prev close - x ATR
+
+TR:= MAX(H - L, ABS(REF(C, 1) - H), ABS(REF(C, 1) - L));
+
+MATR:=  REF(MA(TR, 14),1);
+ 
+C_MATR: C &lt; (REF(C,1) - ( xATR * MATR )  );    
+
+Event: C_MATR;
+ </Code>
+              <Params>
+                <FormulaParam Name="xATR" DefaultValue="1" MinValue="1" MaxValue="100" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_SCAN_SESONALITY_TEST1">
+              <FullName />
+              <Description>// SLOPE SMA30 &gt; 0 AND RL30 &gt; SMA30</Description>
+              <Code>// TEST 1
+
+SMA30:= MA(C, 30);
+R:= ((C/ REF(C,30)) -1)*100;
+RPLUS:= R &gt; 0;
+RMINUS:= R &lt; 0;
+ 
+RL30:= LRC(C,30);
+RL30SLPE:=  ((RL30/ REF(RL30,30)) -1)*100;
+
+Event: RPLUS &amp; (RL30 &gt; SMA30);
+
+//Event: RPLUS &amp; CROSS(RL30,SMA30);</Code>
+              <Params />
+            </Program>
+            <Program Name="KL_SCAN_SESONALITY_TEST2">
+              <FullName />
+              <Description>// SLOPE SMA30 &gt; 0 AND RL30SLOPE GOES FROM NEGATIVE TO POSITIVE (OWL)</Description>
+              <Code>// TEST 2
+
+SMA30:= MA(C, 30);
+R:= ((C/ REF(C,30)) -1)*100;
+RPLUS:= R &gt; 0;
+RMINUS:= R &lt; 0;
+ 
+RL30:= LRC(C,30);
+RL30SLPE:=  ((RL30/ REF(RL30,30)) -1)*100;
+
+Event: RPLUS &amp; (RL30SLPE &gt; REF(RL30SLPE,1));</Code>
+              <Params />
+            </Program>
+          </Programs>
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="Market Condition" Description="Setup Filters&#xD;&#xA;">
+          <Namespaces />
+          <Programs>
+            <Program Name="RS_ETFReplay">
+              <FullName>ETFReplay</FullName>
+              <Description>ETF replay 6mo, 3mo</Description>
+              <Code>C63:= REF(C, 63);
+C128:= REF(C, 128);
+
+
+SEG1:= (C - C63) / C63 * 70;
+SEG2:= (C - C128) / C128 * 30;
+
+
+RS: SEG1 + SEG2;</Code>
+              <Params />
+            </Program>
+            <Program Name="KL_SwingSystem_debug">
+              <FullName />
+              <Description />
+              <Code>//TR:= MAX(REF(H,1) - REF(L,1), ABS(REF(C, 2) - REF(H,1)), ABS(REF(C, 2) - REF(L,1)));
+TR:= MAX(H - L, ABS(REF(C, 1) - H), ABS(REF(C, 1) - L));
+
+
+//MATR:= MA(TR, 14);
+MATR:= REF(MA(TR, 14),1);
+ 
+
+// PCTCHG10
+
+PCTCHG10:= (C - REF(C, 10))/REF(C, 10);
+
+ 
+
+// MPRC
+
+MPRCVAL: 100 * ((C - REF(C, 10)) / (REF(C, 10)))/ ((H - L)/MATR);
+MPRCVAL_1: 100 * ((C - REF(C, 10)) / (REF(C, 10)));
+MPRCVA_2:  ((H - L)/MATR);</Code>
+              <Params>
+                <FormulaParam Name="DOJI_Range_Threshold" DefaultValue="0.7" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="DOJI_NDX_Threshold" DefaultValue="50" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="CH_NDX_Threshold" DefaultValue="20" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="AF_Entry_Buffer" DefaultValue="0.05" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_MC_BULL">
+              <FullName />
+              <Description />
+              <Code>// KL_Ken Long: Market Condition Bull
+SC1:= Fml(Sym1,'C');
+ 
+SMA200 := MA(SC1, 200);
+
+Event:SC1 &gt; 1.02 * SMA200;
+
+ </Code>
+              <Params>
+                <FormulaParam Name="Sym1" DefaultValue="SPY" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+                <FormulaParam Name=" X1" DefaultValue="0" MinValue="0" MaxValue="0" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="X2" DefaultValue="0" MinValue="0" MaxValue="0" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="X3" DefaultValue="0" MinValue=" 0" MaxValue=" 0" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_MC_BEAR">
+              <FullName />
+              <Description />
+              <Code>// KL_Ken Long: Market Condition Bear
+SC1:= Fml(Sym1,'C');
+ 
+SMA200 := MA(SC1, 200);
+
+Event:SC1 &lt; 0.98 * SMA200;
+</Code>
+              <Params>
+                <FormulaParam Name="Sym1" DefaultValue="SPY" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+              </Params>
+            </Program>
+            <Program Name="KL_MC_SIDEWAYS">
+              <FullName />
+              <Description />
+              <Code>// KL_Ken Long: Market Condition Sideways
+SC1:= Fml(Sym1,'C');
+ 
+SMA200 := MA(SC1, 200);
+BTW1:= (SC1 &lt;= 1.02 * SMA200);
+BTW2:= (SC1 &gt;= 0.98 * SMA200);
+
+Event: BTW1 &amp; BTW2 ;</Code>
+              <Params>
+                <FormulaParam Name="Sym1" DefaultValue="SPY" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+              </Params>
+            </Program>
+            <Program Name="TR_PCT">
+              <FullName />
+              <Description />
+              <Code>// KL_Ken Long TR PERCENT
+// TR%  is the True Range as a % of price
+
+SC1:= Fml(Sym1,'C');
+SH1:= Fml(Sym1,'H');
+SL1:= Fml(Sym1,'L');
+ 
+LC:= REF(SC1,1);
+
+TR:= MAX(SH1-SL1,ABS(LC-SH1),ABS(LC-SL1));
+
+TR_PCT:100 * TR / LC;</Code>
+              <Params>
+                <FormulaParam Name="Sym1" DefaultValue="SPY" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+              </Params>
+            </Program>
+            <Program Name="KL_MC_VOLATILE">
+              <FullName />
+              <Description />
+              <Code>//Ken Long: Market Condition Volatile
+
+TRPCT:= "MY.TR_PCT";
+MATR:= MA(TRPCT, 100);
+SDTR:= STDP(TRPCT, 100);
+
+event: TRPCT &gt; MATR + SDTR;</Code>
+              <Params />
+            </Program>
+            <Program Name="KL_MC_QUIET">
+              <FullName />
+              <Description />
+              <Code>//Ken Long: Market Condition Quiet
+
+TRPCT:= "MY.TR_PCT";
+MATR:= MA(TRPCT, 100);
+SDTR:= STDP(TRPCT, 100);
+
+event: TRPCT &lt; MATR - SDTR;</Code>
+              <Params />
+            </Program>
+            <Program Name="KL_SwingSystem_backup">
+              <FullName />
+              <Description />
+              <Code>// KL_SwingSystem  10/12/2023
+
+// DOJI
+
+NDXOpen:= 100 * (O - L)/(H - L);
+
+NDXClose:= 100 * (C - L)/(H - L);
+
+ 
+//TR:= MAX(REF(H,1) - REF(L,1), ABS(REF(C, 2) - REF(H,1)), ABS(REF(C, 2) - REF(L,1)));
+TR:= MAX(H - L, ABS(REF(C, 1) - H), ABS(REF(C, 1) - L));
+
+
+//MATR:= MA(TR, 14);
+MATR:= REF(MA(TR, 14),1);
+ 
+
+DOJI: (H - L)/MATR &lt;= DOJI_Range_Threshold &amp; ABS(NDXOpen - NDXClose) &lt; DOJI_NDX_Threshold;
+
+ 
+// CH
+
+SMA200:= MA(C, 200);
+
+//NDX10:= 100 * (C - LLV(L, 10))/(HHV(H, 10) - LLV(L, 10));
+NDX10: 100 * (C - LLV(REF(L,1), 10))/(HHV(REF(H,1), 10) - LLV(REF(L,1), 10));
+
+CH: C &gt; SMA200 &amp; NDX10 &lt;= CH_NDX_Threshold;
+
+ 
+// OR_Long
+
+SMA10:= MA(C, 10);
+
+ORLONG: C &gt; SMA200 &amp; H &lt; SMA10 &amp; C &lt; (SMA10-MATR);
+ 
+
+// OR_Short
+
+ORSHORT: C &lt; SMA200 &amp; L &gt; SMA10 &amp; C &gt; (SMA10+MATR);
+ 
+
+// Williams %R
+
+//WR260:= -100*(HHV(HIGH,260)-CLOSE)/(HHV(HIGH,260)-LLV(LOW,260));
+WR260:= -100*(HHV(REF(HIGH,1),260)-REF(CLOSE,1))/(HHV(REF(HIGH,1),260)-LLV(REF(LOW,1),260));
+
+
+//WR10:= -100*(HHV(HIGH,10)-CLOSE)/(HHV(HIGH,10)-LLV(LOW,10));
+WR10:= -100*(HHV(REF(HIGH,1),10)-REF(CLOSE,1))/(HHV(REF(HIGH,1),10)-LLV(REF(LOW,1),10));
+
+ 
+// Washout
+
+//WO: WR260 &lt;= -80 &amp; WR10 &lt;= -80 &amp; L &gt; REF(L, 1) &amp; C &gt; O &amp; C &gt; REF(H, 1);
+WO: WR260 &lt;= -80 &amp; WR10 &lt;= -80 &amp; L &gt; REF(L, 1) &amp; C &gt;= O &amp; C &gt; REF(H, 1);
+ 
+
+// 5DD
+
+DD5: C &lt; REF(C, 1) &amp; REF(C, 1) &lt; REF(C, 2) &amp; REF(C,2) &lt; REF(C, 3) &amp; REF(C,3) &lt; REF(C,4) &amp; REF(C, 4) &lt; REF(C, 5);
+
+ 
+
+// TS
+
+ADX14:= "ADX(14)";
+
+//PLUSDI14: "DIMinus(14)";
+PLUSDI14: "DIPlus(14)";
+
+//MINUSDI14: "DIPlus(14)";
+MINUSDI14: "DIMinus(14)";
+
+SMA20:= MA(C, 20);
+ 
+TS:= ADX14 &gt; 25 &amp; PLUSDI14 &gt; MINUSDI14 &amp; C &lt; SMA20;
+
+
+// 551W
+
+//W551: C &gt; REF(C, 25) &amp; C &lt; REF(C, 5) &amp; C &gt; O &amp; NDX10 &lt;= 50;
+W551: C &gt; REF(C, 25) &amp; C &lt; REF(C, 5) &amp; C &gt; O &amp; NDX10 &lt; 50;
+ 
+
+// PCTCHG10
+
+PCTCHG10: (C - REF(C, 10))/REF(C, 10);
+
+ 
+// MPRC
+
+MPRCVAL: 100 * ((C - REF(C, 10)) / (REF(C, 10)))/ ((H - L)/MATR);
+ 
+
+// AutoFramer
+
+ 
+ATRX: MA( MAX(REF(H,1) -REF(L,1), ABS(REF(C, 2) - REF(H, 1)), ABS(REF(C, 2) - REF(L, 1))),14);
+
+REWARD:= HHV(REF(H, 1), 10) - (H  + AF_Entry_Buffer);
+
+REWARDATR:= REWARD / ATRX;
+
+RANGERISK:= (H + AF_Entry_Buffer) - (LOW - AF_Entry_Buffer);
+
+ATRFOURTH:= 0.25 * ATRX;
+ 
+
+RISK:= IF(RANGERISK &lt; ATRFOURTH, ATRFOURTH, IF(RANGERISK &lt; ATRX, RANGERISK, ATRX));
+
+RISKATR:= RISK/ATRX;
+
+AUTOFRAMER: REWARDATR / RISKATR;  </Code>
+              <Params>
+                <FormulaParam Name="DOJI_Range_Threshold" DefaultValue="0.7" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="DOJI_NDX_Threshold" DefaultValue="50" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="CH_NDX_Threshold" DefaultValue="20" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="AF_Entry_Buffer" DefaultValue="0.05" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_MC_NORMAL">
+              <FullName />
+              <Description />
+              <Code>//Ken Long: Market Condition Normal
+TRPCT:= "MY.TR_PCT";
+MATR:= MA(TRPCT, 100);
+SDTR:= STDP(TRPCT, 100);
+
+BTL1:= TRPCT &gt; MATR + SDTR;
+BTU1:= TRPCT &lt; MATR - SDTR;
+
+event:  !BTL1 &amp; !BTU1;</Code>
+              <Params />
+            </Program>
+          </Programs>
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="3d9d" Description="3d9d setups&#xD;&#xA;">
+          <Namespaces />
+          <Programs>
+            <Program Name="BASE">
+              <FullName />
+              <Description />
+              <Code>event: CROSS(C, MA(C,10));</Code>
+              <Params />
+            </Program>
+            <Program Name="WEEKLY_BASE">
+              <FullName />
+              <Description />
+              <Code>weeklyevent:FML('My.BASE#WEEK1');
+event: CROSS(weeklyevent, 0.5);</Code>
+              <Params />
+            </Program>
+            <Program Name="AGGTEST">
+              <FullName />
+              <Description />
+              <Code>//A3O: FML('O#DAY9');
+//A3H: FML('H#DAY9');
+//A3L: FML('L#DAY9');
+A3C: FML('C#WEEK1');</Code>
+              <Params />
+            </Program>
+            <Program Name="AGGREGATE_9">
+              <FullName />
+              <Description />
+              <Code>A9: FML('My.BASETEST()#DAY9'); 
+A2: FML('My.BASETEST()#DAY2'); 
+A3: FML('My.BASETEST()#DAY3')</Code>
+              <Params />
+            </Program>
+            <Program Name="BASETEST">
+              <FullName />
+              <Description />
+              <Code>COUNT(C, 0);</Code>
+              <Params />
+            </Program>
+            <Program Name="AGG9">
+              <FullName />
+              <Description />
+              <Code>FOO: FML('My.BASESCRIPT()#DAY9'); 
+BAR: FML('My.BASESCRIPT()#DAY3')</Code>
+              <Params />
+            </Program>
+            <Program Name="BASESCRIPT">
+              <FullName />
+              <Description />
+              <Code>MA(C,10);</Code>
+              <Params />
+            </Program>
+            <Program Name="KL_PSAR_FLIP_BEAR">
+              <FullName />
+              <Description />
+              <Code>Event:Cross(PSAR_F(LRC(C, FastPeriod),Acc,AccLimit),LRC(C, FastPeriod));</Code>
+              <Params>
+                <FormulaParam Name="FastPeriod" DefaultValue="10" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Acc" DefaultValue="0.02" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="AccLimit" DefaultValue="0.14" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_PSAR_FLIP_BULL">
+              <FullName />
+              <Description />
+              <Code>Event:Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit));</Code>
+              <Params>
+                <FormulaParam Name="FastPeriod" DefaultValue="10" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Acc" DefaultValue="0.02" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="AccLimit" DefaultValue="0.14" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_SCAN_PSAR_FLIP_BULL_3D">
+              <FullName />
+              <Description />
+              <Code>aggEvent: FML('My.KL_PSAR_FLIP_BULL#DAY3');
+event: CROSS(aggEvent, 0.5);</Code>
+              <Params />
+            </Program>
+            <Program Name="KL_SCAN_PSAR_FLIP_BEAR_9D">
+              <FullName />
+              <Description />
+              <Code>aggEvent: FML('My.KL_PSAR_FLIP_BEAR#DAY9');
+event: CROSS(aggEvent, 0.5);</Code>
+              <Params />
+            </Program>
+            <Program Name="KL_SCAN_PSAR_FLIP_BULL_9D">
+              <FullName />
+              <Description />
+              <Code>aggEvent: FML('My.KL_PSAR_FLIP_BULL#DAY9');
+event: CROSS(aggEvent, 0.5);</Code>
+              <Params />
+            </Program>
+            <Program Name="KL_SCAN_PSAR_FLIP_BEAR_1D">
+              <FullName />
+              <Description />
+              <Code>aggEvent: FML('My.KL_PSAR_FLIP_BEAR#DAY1');
+event: CROSS(aggEvent, 0.5);</Code>
+              <Params />
+            </Program>
+            <Program Name="KL_SCAN_PSAR_FLIP_BULL_1D">
+              <FullName />
+              <Description />
+              <Code>aggEvent: FML('My.KL_PSAR_FLIP_BULL#DAY1');
+event: CROSS(aggEvent, 0.5);</Code>
+              <Params />
+            </Program>
+          </Programs>
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="EMA225589" Description="">
+          <Namespaces />
+          <Programs>
+            <Program Name="KL_Scan_EMA_ribbon_Long_crossover_v2">
+              <FullName />
+              <Description>Scan to use the EMA22&gt;EMA55&gt;EMA89 to find a strong trend.
+If in the correct order there is often a strong trend on the chart.
+Long if setup MA1 &gt; MA2 AND MA2&gt;MA3, and cross bullish 0.5
+</Description>
+              <Code>// RIBBON SCAN
+Price:= (O+H+L+C)/4;
+MA1:=EMA(Price,N1);
+MA2:=EMA(Price,N2);
+MA3:=EMA(Price,N3);
+
+Bullish:=  (MA1 &gt; MA2 ) &amp; (MA2 &gt; MA3) ;
+Event: CROSS(Bullish, 0.5);</Code>
+              <Params>
+                <FormulaParam Name="N1" DefaultValue="22" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N2" DefaultValue="55" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N3" DefaultValue="89" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_Scan_EMA_SMA89_ribbon_Long">
+              <FullName />
+              <Description>Scan to use the EMA22&gt;EMA55&gt;SMA89 to find a strong trend.
+If in the correct order there is often a strong trend on the chart.
+Long if MA1 cross MA2 AND MA2&gt;MA3
+</Description>
+              <Code>// RIBBON SCAN
+Price:= (O+H+L+C)/4;
+MA1:=EMA(Price,N1);
+MA2:=EMA(Price,N2);
+MA3:=MA(Price,N3);
+
+//Event: Cross(MA1,MA2) &amp; (MA2 &gt; MA3) ;
+
+Event:  (MA1 &gt; MA2 ) &amp; (MA2 &gt; MA3) ;</Code>
+              <Params>
+                <FormulaParam Name="N1" DefaultValue="22" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N2" DefaultValue="55" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N3" DefaultValue="89" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_Scan_EMA_SMA89_ribbon_Long_Exit">
+              <FullName />
+              <Description>Scan to exit long entry for MA1 crosses MA3
+</Description>
+              <Code>// RIBBON SCAN
+Price:= (O+H+L+C)/4;
+MA1:=EMA(Price,N1);
+MA2:=EMA(Price,N2);
+MA3:=MA(Price,N3);
+
+Event: Cross(MA3,MA1)  ;
+
+//Event:  (MA1 &gt; MA2 ) &amp; (MA2 &gt; MA3) ;</Code>
+              <Params>
+                <FormulaParam Name="N1" DefaultValue="22" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N2" DefaultValue="55" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N3" DefaultValue="89" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_Scan_EMA_ribbon_Long">
+              <FullName />
+              <Description>Scan to use the EMA22&gt;EMA55&gt;EMA89 to find a strong trend.
+If in the correct order there is often a strong trend on the chart.
+Long if MA1 cross MA2 AND MA2&gt;MA3
+</Description>
+              <Code>// RIBBON SCAN
+Price:= (O+H+L+C)/4;
+MA1:=EMA(Price,N1);
+MA2:=EMA(Price,N2);
+MA3:=EMA(Price,N3);
+
+Event:  (MA1 &gt; MA2 ) &amp; (MA2 &gt; MA3) ;</Code>
+              <Params>
+                <FormulaParam Name="N1" DefaultValue="22" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N2" DefaultValue="55" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N3" DefaultValue="89" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_Scan_EMA_ribbon_Long_Exit">
+              <FullName />
+              <Description>Scan to exit long entry for MA1 crosses EMA3
+</Description>
+              <Code>// RIBBON SCAN
+Price:= (O+H+L+C)/4;
+MA1:=EMA(Price,N1);
+MA2:=EMA(Price,N2);
+MA3:=EMA(Price,N3);
+
+Event: Cross(MA3,MA1)  ;
+
+//Event:  (MA1 &gt; MA2 ) &amp; (MA2 &gt; MA3) ;</Code>
+              <Params>
+                <FormulaParam Name="N1" DefaultValue="22" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N2" DefaultValue="55" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N3" DefaultValue="89" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_SCAN_Long_EMA_ribbon_obug">
+              <FullName />
+              <Description>Create a Scam code for Long Entry 
+
+to use the EMA22&gt;EMA55&gt;EMA89 to find a strong trend.
+If in the correct order there is often a strong trend on the chart.
+</Description>
+              <Code>Price:= (O+H+L+C)/4;
+MA1:= EMA(Price,N1),width2,ColorGreen;
+MA2:= EMA(Price,N2),Width2,ColorRed;
+MA3:= EMA(Price,N3),Width2,ColorBlue;
+RibUp1:= FILLRGN(MA1&gt;MA2,MA1, MA2),ExtendLR,Brush#3000FF00;
+RibDn1:=  FILLRGN(MA2&gt;MA1,MA2, MA1),ExtendLR,Brush#50008000;
+
+RibUp2:=  FILLRGN(MA2&gt;MA3,MA2, MA3),ExtendLR,Brush#30FA8072;
+RibDn2:= FILLRGN(MA2&lt;MA3,MA3, MA2),ExtendLR,Brush#50FF0000;
+
+Event: (MA1&gt; MA2) &amp; (MA2 &gt; MA3);
+</Code>
+              <Params>
+                <FormulaParam Name="N1" DefaultValue="22" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N2" DefaultValue="55" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N3" DefaultValue="89" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_Layout_EMA_ribbon">
+              <FullName />
+              <Description>to use the EMA22&gt;EMA55&gt;EMA89 to find a strong trend.
+If in the correct order there is often a strong trend on the chart.
+</Description>
+              <Code>Price:= (O+H+L+C)/4;
+MA1:EMA(Price,N1),width2,ColorGreen;
+MA2:EMA(Price,N2),Width2,ColorRed;
+MA3:EMA(Price,N3),Width2,ColorBlue;
+RibUp1: FILLRGN(MA1&gt;MA2,MA1, MA2),ExtendLR,Brush#3000FF00;
+RibDn1: FILLRGN(MA2&gt;MA1,MA2, MA1),ExtendLR,Brush#50008000;
+
+RibUp2: FILLRGN(MA2&gt;MA3,MA2, MA3),ExtendLR,Brush#30FA8072;
+RibDn2: FILLRGN(MA2&lt;MA3,MA3, MA2),ExtendLR,Brush#50FF0000;</Code>
+              <Params>
+                <FormulaParam Name="N1" DefaultValue="22" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N2" DefaultValue="55" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N3" DefaultValue="89" MinValue="10" MaxValue="10000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+          </Programs>
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="Swing Systems" Description="">
+          <Namespaces />
+          <Programs>
+            <Program Name="KL_Scan_SwingSystem_setups">
+              <FullName />
+              <Description />
+              <Code>// KL_SwingSystem  10/12/2023
+
+// DOJI
+
+NDXOpen:= 100 * (O - L)/(H - L);
+
+NDXClose:= 100 * (C - L)/(H - L);
+
+ 
+//TR:= MAX(REF(H,1) - REF(L,1), ABS(REF(C, 2) - REF(H,1)), ABS(REF(C, 2) - REF(L,1)));
+TR:= MAX(H - L, ABS(REF(C, 1) - H), ABS(REF(C, 1) - L));
+
+
+//MATR:= MA(TR, 14);
+MATR:= REF(MA(TR, 14),1);
+ 
+
+DOJI:= (H - L)/MATR &lt;= DOJI_Range_Threshold &amp; ABS(NDXOpen - NDXClose) &lt; DOJI_NDX_Threshold;
+
+ 
+// CH
+
+SMA200:= MA(C, 200);
+
+//NDX10:= 100 * (C - LLV(L, 10))/(HHV(H, 10) - LLV(L, 10));
+NDX10:= 100 * (C - LLV(REF(L,1), 10))/(HHV(REF(H,1), 10) - LLV(REF(L,1), 10));
+
+CH:= C &gt; SMA200 &amp; NDX10 &lt;= CH_NDX_Threshold;
+
+ 
+// OR_Long
+
+SMA10:= MA(C, 10);
+
+ORLONG:= C &gt; SMA200 &amp; H &lt; SMA10 &amp; C &lt; (SMA10-MATR);
+ 
+
+// OR_Short
+
+ORSHORT:= C &lt; SMA200 &amp; L &gt; SMA10 &amp; C &gt; (SMA10+MATR);
+ 
+
+// Williams %R
+
+//WR260:= -100*(HHV(HIGH,260)-CLOSE)/(HHV(HIGH,260)-LLV(LOW,260));
+WR260:= -100*(HHV(REF(HIGH,1),260)-REF(CLOSE,1))/(HHV(REF(HIGH,1),260)-LLV(REF(LOW,1),260));
+
+
+//WR10:= -100*(HHV(HIGH,10)-CLOSE)/(HHV(HIGH,10)-LLV(LOW,10));
+WR10:= -100*(HHV(REF(HIGH,1),10)-REF(CLOSE,1))/(HHV(REF(HIGH,1),10)-LLV(REF(LOW,1),10));
+
+ 
+// Washout
+
+//WO: WR260 &lt;= -80 &amp; WR10 &lt;= -80 &amp; L &gt; REF(L, 1) &amp; C &gt; O &amp; C &gt; REF(H, 1);
+WO:= WR260 &lt;= -80 &amp; WR10 &lt;= -80 &amp; L &gt; REF(L, 1) &amp; C &gt;= O &amp; C &gt; REF(H, 1);
+ 
+
+// 5DD
+
+DD5:= C &lt; REF(C, 1) &amp; REF(C, 1) &lt; REF(C, 2) &amp; REF(C,2) &lt; REF(C, 3) &amp; REF(C,3) &lt; REF(C,4) &amp; REF(C, 4) &lt; REF(C, 5);
+
+ 
+
+// TS
+
+ADX14:= "ADX(14)";
+
+//PLUSDI14: "DIMinus(14)";
+PLUSDI14:= "DIPlus(14)";
+
+//MINUSDI14: "DIPlus(14)";
+MINUSDI14:= "DIMinus(14)";
+
+SMA20:= MA(C, 20);
+ 
+TS:= ADX14 &gt; 25 &amp; PLUSDI14 &gt; MINUSDI14 &amp; C &lt; SMA20;
+
+
+// 551W
+
+//W551: C &gt; REF(C, 25) &amp; C &lt; REF(C, 5) &amp; C &gt; O &amp; NDX10 &lt;= 50;
+W551:= C &gt; REF(C, 25) &amp; C &lt; REF(C, 5) &amp; C &gt; O &amp; NDX10 &lt; 50;
+ 
+
+// PCTCHG10
+
+PCTCHG10:= (C - REF(C, 10))/REF(C, 10);
+
+ 
+// MPRC
+
+MPRCVAL:= 100 * ((C - REF(C, 10)) / (REF(C, 10)))/ ((H - L)/MATR);
+MP:= MPRCVAL &lt;  (MP_threshold * -1 );
+
+// AutoFramer
+
+ 
+ATRX:= MA( MAX(REF(H,1) -REF(L,1), ABS(REF(C, 2) - REF(H, 1)), ABS(REF(C, 2) - REF(L, 1))),14);
+
+REWARD:= HHV(REF(H, 1), 10) - (H  + AF_Entry_Buffer);
+
+REWARDATR:= REWARD / ATRX;
+
+RANGERISK:= (H + AF_Entry_Buffer) - (LOW - AF_Entry_Buffer);
+
+ATRFOURTH:= 0.25 * ATRX;
+ 
+
+RISK:= IF(RANGERISK &lt; ATRFOURTH, ATRFOURTH, IF(RANGERISK &lt; ATRX, RANGERISK, ATRX));
+
+RISKATR:= RISK/ATRX;
+
+AUTOFRAMER:= REWARDATR / RISKATR;  
+AF:= AUTOFRAMER &gt; AF_threshold;
+
+//Event:Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit)) &amp; CH+ Ref(CH, 1) + ref(CH,2) + Ref(CH,3) + Ref(CH,4) + Ref(CH,5)+ Ref(CH,6) + Ref(CH,7) + Ref(CH,8) ;
+//Event:Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit)) &amp; ORLONG+ Ref(ORLONG, 1) + ref(ORLONG,2) + Ref(ORLONG,3) + Ref(ORLONG,4) + Ref(ORLONG,5)+ Ref(ORLONG,6) + Ref(ORLONG,7) + Ref(ORLONG,8) ;
+//Event:Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit)) &amp; WO+ Ref(WO, 1) + ref(WO,2) + Ref(WO,3) + Ref(WO,4) + Ref(WO,5)+ Ref(WO,6) + Ref(WO,7) + Ref(WO,8) +Ref(WO,9) +Ref(WO,10);
+//Event:Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit)) &amp; DD5+ Ref( DD5, 1) + ref( DD5,2) + Ref( DD5,3) + Ref( DD5,4) + Ref( DD5,5)+ Ref( DD5,6) + Ref( DD5,7) + Ref( DD5,8) ;
+//Event:Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit)) &amp; W551+ Ref(W551, 1) + ref(W551,2) + Ref(W551,3) + Ref(W551,4) + Ref(W551,5)+ Ref(W551,6) + Ref(W551,7) + Ref(W551,8) ;
+//Event:Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit)) &amp; TS+ Ref(TS, 1) + ref(TS,2) + Ref(TS,3) + Ref(TS,4) + Ref(TS,5)+ Ref(TS,6) + Ref(TS,7) + Ref(TS,8) ;
+//Event:Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit)) &amp; AF+ Ref(AF, 1) + ref(AF,2) + Ref(AF,3) + Ref(AF,4) + Ref(AF,5)+ Ref(AF,6) + Ref(AF,7) + Ref(AF,8) ;
+//Event:Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit)) &amp; MP+ Ref(MP, 1) + ref(MP,2) + Ref(MP,3) + Ref(MP,4) + Ref(MP,5)+ Ref(MP,6) + Ref(MP,7) + Ref(MP,8) ;
+
+Event: (TS);
+//Event:(CH + DD5 +  ORLONG ) ;
+//Event:(CH + WO + DD5 + W551 + TS + DOJI + ORLONG) &amp; Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit));</Code>
+              <Params>
+                <FormulaParam Name="FastPeriod" DefaultValue="10" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Acc" DefaultValue="0.02" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="AccLimit" DefaultValue="0.14" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="DOJI_Range_Threshold" DefaultValue="0.7" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="DOJI_NDX_Threshold" DefaultValue="50" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="CH_NDX_Threshold" DefaultValue="20" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="AF_Entry_Buffer" DefaultValue="0.05" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="AF_threshold" DefaultValue="3" MinValue="1" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="MP_threshold" DefaultValue="5" MinValue="1" MaxValue="100" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_Scan_MC_SwingSystem_setups">
+              <FullName />
+              <Description />
+              <Code>// KL_Ken Long: Market Condition Bear
+SC1:= Fml(Sym1,'C');
+ 
+SMA200 := MA(SC1, 200);
+
+//Event: SC1 &lt; 0.98 * SMA200;
+
+
+
+// KL_SwingSystem  10/12/2023
+
+// DOJI
+
+NDXOpen:= 100 * (O - L)/(H - L);
+
+NDXClose:= 100 * (C - L)/(H - L);
+
+ 
+//TR:= MAX(REF(H,1) - REF(L,1), ABS(REF(C, 2) - REF(H,1)), ABS(REF(C, 2) - REF(L,1)));
+TR:= MAX(H - L, ABS(REF(C, 1) - H), ABS(REF(C, 1) - L));
+
+
+//MATR:= MA(TR, 14);
+MATR:= REF(MA(TR, 14),1);
+ 
+
+DOJI:= (H - L)/MATR &lt;= DOJI_Range_Threshold &amp; ABS(NDXOpen - NDXClose) &lt; DOJI_NDX_Threshold;
+
+ 
+// CH
+
+SMA200:= MA(C, 200);
+
+//NDX10:= 100 * (C - LLV(L, 10))/(HHV(H, 10) - LLV(L, 10));
+NDX10:= 100 * (C - LLV(REF(L,1), 10))/(HHV(REF(H,1), 10) - LLV(REF(L,1), 10));
+
+CH:= C &gt; SMA200 &amp; NDX10 &lt;= CH_NDX_Threshold;
+
+ 
+// OR_Long
+
+SMA10:= MA(C, 10);
+
+ORLONG:= C &gt; SMA200 &amp; H &lt; SMA10 &amp; C &lt; (SMA10-MATR);
+ 
+
+// OR_Short
+
+ORSHORT:= C &lt; SMA200 &amp; L &gt; SMA10 &amp; C &gt; (SMA10+MATR);
+ 
+
+// Williams %R
+
+//WR260:= -100*(HHV(HIGH,260)-CLOSE)/(HHV(HIGH,260)-LLV(LOW,260));
+WR260:= -100*(HHV(REF(HIGH,1),260)-REF(CLOSE,1))/(HHV(REF(HIGH,1),260)-LLV(REF(LOW,1),260));
+
+
+//WR10:= -100*(HHV(HIGH,10)-CLOSE)/(HHV(HIGH,10)-LLV(LOW,10));
+WR10:= -100*(HHV(REF(HIGH,1),10)-REF(CLOSE,1))/(HHV(REF(HIGH,1),10)-LLV(REF(LOW,1),10));
+
+ 
+// Washout
+
+//WO: WR260 &lt;= -80 &amp; WR10 &lt;= -80 &amp; L &gt; REF(L, 1) &amp; C &gt; O &amp; C &gt; REF(H, 1);
+WO:= WR260 &lt;= -80 &amp; WR10 &lt;= -80 &amp; L &gt; REF(L, 1) &amp; C &gt;= O &amp; C &gt; REF(H, 1);
+ 
+
+// 5DD
+
+DD5:= C &lt; REF(C, 1) &amp; REF(C, 1) &lt; REF(C, 2) &amp; REF(C,2) &lt; REF(C, 3) &amp; REF(C,3) &lt; REF(C,4) &amp; REF(C, 4) &lt; REF(C, 5);
+
+ 
+
+// TS
+
+ADX14:= "ADX(14)";
+
+//PLUSDI14: "DIMinus(14)";
+PLUSDI14:= "DIPlus(14)";
+
+//MINUSDI14: "DIPlus(14)";
+MINUSDI14:= "DIMinus(14)";
+
+SMA20:= MA(C, 20);
+ 
+TS:= ADX14 &gt; 25 &amp; PLUSDI14 &gt; MINUSDI14 &amp; C &lt; SMA20;
+
+
+// 551W
+
+//W551: C &gt; REF(C, 25) &amp; C &lt; REF(C, 5) &amp; C &gt; O &amp; NDX10 &lt;= 50;
+W551:= C &gt; REF(C, 25) &amp; C &lt; REF(C, 5) &amp; C &gt; O &amp; NDX10 &lt; 50;
+ 
+
+// PCTCHG10
+
+PCTCHG10:= (C - REF(C, 10))/REF(C, 10);
+
+ 
+// MPRC
+
+MPRCVAL:= 100 * ((C - REF(C, 10)) / (REF(C, 10)))/ ((H - L)/MATR);
+ 
+
+// AutoFramer
+
+ 
+ATRX:= MA( MAX(REF(H,1) -REF(L,1), ABS(REF(C, 2) - REF(H, 1)), ABS(REF(C, 2) - REF(L, 1))),14);
+
+REWARD:= HHV(REF(H, 1), 10) - (H  + AF_Entry_Buffer);
+
+REWARDATR:= REWARD / ATRX;
+
+RANGERISK:= (H + AF_Entry_Buffer) - (LOW - AF_Entry_Buffer);
+
+ATRFOURTH:= 0.25 * ATRX;
+ 
+
+RISK:= IF(RANGERISK &lt; ATRFOURTH, ATRFOURTH, IF(RANGERISK &lt; ATRX, RANGERISK, ATRX));
+
+RISKATR:= RISK/ATRX;
+
+AUTOFRAMER:= REWARDATR / RISKATR;  
+
+
+Event:(ORLONG) &amp; (SC1 &gt; 1.02 * SMA200) ;
+//Event:(CH + WO+ DD5 + W551 + TS +  ORLONG) ;
+//Event:(CH + WO + DD5 + W551 + TS + DOJI + ORLONG) &amp; Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit));
+//Event:(CH + WO + DD5 + W551 + TS + DOJI + ORLONG) &amp; Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit));
+//Event:(CH + WO + DD5 + W551 + TS + DOJI + ORLONG) &amp; Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit));
+//Event:(CH + WO + DD5 + W551 + TS + DOJI + ORLONG) &amp; Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit));
+//Event:(CH + WO + DD5 + W551 + TS + DOJI + ORLONG) &amp; Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit));
+//Event:(CH + WO + DD5 + W551 + TS + DOJI + ORLONG) &amp; Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit));</Code>
+              <Params>
+                <FormulaParam Name="FastPeriod" DefaultValue="10" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Acc" DefaultValue="0.02" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="AccLimit" DefaultValue="0.12" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="DOJI_Range_Threshold" DefaultValue="0.7" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="DOJI_NDX_Threshold" DefaultValue="50" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="CH_NDX_Threshold" DefaultValue="20" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="AF_Entry_Buffer" DefaultValue="0.05" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Sym1" DefaultValue="SPY" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+              </Params>
+            </Program>
+            <Program Name="KL_SwingSystem">
+              <FullName />
+              <Description />
+              <Code>// KL_SwingSystem  10/12/2023
+
+// DOJI
+
+NDXOpen:= 100 * (O - L)/(H - L);
+
+NDXClose:= 100 * (C - L)/(H - L);
+
+ 
+//TR:= MAX(REF(H,1) - REF(L,1), ABS(REF(C, 2) - REF(H,1)), ABS(REF(C, 2) - REF(L,1)));
+TR:= MAX(H - L, ABS(REF(C, 1) - H), ABS(REF(C, 1) - L));
+
+
+//MATR:= MA(TR, 14);
+MATR:= REF(MA(TR, 14),1);
+ 
+
+DOJI: (H - L)/MATR &lt;= DOJI_Range_Threshold &amp; ABS(NDXOpen - NDXClose) &lt; DOJI_NDX_Threshold;
+
+ 
+// CH
+
+SMA200:= MA(C, 200);
+
+//NDX10:= 100 * (C - LLV(L, 10))/(HHV(H, 10) - LLV(L, 10));
+NDX10: 100 * (C - LLV(REF(L,1), 10))/(HHV(REF(H,1), 10) - LLV(REF(L,1), 10));
+
+CH: C &gt; SMA200 &amp; NDX10 &lt;= CH_NDX_Threshold;
+
+ 
+// OR_Long
+
+SMA10:= MA(C, 10);
+
+ORLONG: C &gt; SMA200 &amp; H &lt; SMA10 &amp; C &lt; (SMA10-MATR);
+ 
+
+// OR_Short
+
+ORSHORT: C &lt; SMA200 &amp; L &gt; SMA10 &amp; C &gt; (SMA10+MATR);
+ 
+
+// Williams %R
+
+//WR260:= -100*(HHV(HIGH,260)-CLOSE)/(HHV(HIGH,260)-LLV(LOW,260));
+WR260:= -100*(HHV(REF(HIGH,1),260)-REF(CLOSE,1))/(HHV(REF(HIGH,1),260)-LLV(REF(LOW,1),260));
+
+
+//WR10:= -100*(HHV(HIGH,10)-CLOSE)/(HHV(HIGH,10)-LLV(LOW,10));
+WR10:= -100*(HHV(REF(HIGH,1),10)-REF(CLOSE,1))/(HHV(REF(HIGH,1),10)-LLV(REF(LOW,1),10));
+
+ 
+// Washout
+
+//WO: WR260 &lt;= -80 &amp; WR10 &lt;= -80 &amp; L &gt; REF(L, 1) &amp; C &gt; O &amp; C &gt; REF(H, 1);
+WO: WR260 &lt;= -80 &amp; WR10 &lt;= -80 &amp; L &gt; REF(L, 1) &amp; C &gt;= O &amp; C &gt; REF(H, 1);
+ 
+
+// 5DD
+
+DD5: C &lt; REF(C, 1) &amp; REF(C, 1) &lt; REF(C, 2) &amp; REF(C,2) &lt; REF(C, 3) &amp; REF(C,3) &lt; REF(C,4) &amp; REF(C, 4) &lt; REF(C, 5);
+
+ 
+
+// TS
+
+ADX14:= "ADX(14)";
+
+//PLUSDI14: "DIMinus(14)";
+PLUSDI14: "DIPlus(14)";
+
+//MINUSDI14: "DIPlus(14)";
+MINUSDI14: "DIMinus(14)";
+
+SMA20:= MA(C, 20);
+ 
+TS:= ADX14 &gt; 25 &amp; PLUSDI14 &gt; MINUSDI14 &amp; C &lt; SMA20;
+
+
+// 551W
+
+//W551: C &gt; REF(C, 25) &amp; C &lt; REF(C, 5) &amp; C &gt; O &amp; NDX10 &lt;= 50;
+W551: C &gt; REF(C, 25) &amp; C &lt; REF(C, 5) &amp; C &gt; O &amp; NDX10 &lt; 50;
+ 
+
+// PCTCHG10
+
+PCTCHG10: (C - REF(C, 10))/REF(C, 10);
+
+ 
+// MPRC
+
+MPRCVAL: 100 * ((C - REF(C, 10)) / (REF(C, 10)))/ ((H - L)/MATR);
+ 
+
+// AutoFramer
+
+ 
+ATRX: MA( MAX(REF(H,1) -REF(L,1), ABS(REF(C, 2) - REF(H, 1)), ABS(REF(C, 2) - REF(L, 1))),14);
+
+REWARD:= HHV(REF(H, 1), 10) - (H  + AF_Entry_Buffer);
+
+REWARDATR:= REWARD / ATRX;
+
+RANGERISK:= (H + AF_Entry_Buffer) - (LOW - AF_Entry_Buffer);
+
+ATRFOURTH:= 0.25 * ATRX;
+ 
+
+RISK:= IF(RANGERISK &lt; ATRFOURTH, ATRFOURTH, IF(RANGERISK &lt; ATRX, RANGERISK, ATRX));
+
+RISKATR:= RISK/ATRX;
+
+AUTOFRAMER: REWARDATR / RISKATR;  </Code>
+              <Params>
+                <FormulaParam Name="DOJI_Range_Threshold" DefaultValue="0.7" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="DOJI_NDX_Threshold" DefaultValue="50" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="CH_NDX_Threshold" DefaultValue="20" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="AF_Entry_Buffer" DefaultValue="0.05" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_CriticalStatesRange">
+              <FullName />
+              <Description />
+              <Code>// This script calculates the Range %
+// for the 5 day and 1 day sets
+
+// Price Location within Lookback Period
+
+L10: (C-LLV(L, 10))/(HHV(H,10) - LLV(L, 10)),norender;
+L30: (C-LLV(L, 30))/(HHV(H,30) - LLV(L, 30)),norender;
+L150: (C-LLV(L, 150))/(HHV(H,150) - LLV(L, 150)),norender;
+
+
+// 5 Day Range %
+// The 5 day range as a percentage of price
+//=========================================
+
+R5: (HHV(H, 5) - LLV(L, 5)) / C,norender;
+R5_5: REF(R5, 5),norender;
+R5_10: REF(R5, 10),norender;
+R5_15: REF(R5, 15),norender;
+R5_20: REF(R5, 20),norender;
+R5_25: REF(R5, 25),norender;
+R5_30: REF(R5, 30),norender;
+R5_35: REF(R5, 35),norender;
+R5_40: REF(R5, 40),norender;
+R5_45: REF(R5, 45),norender;
+R5_50: REF(R5, 50),norender;
+R5_55: REF(R5, 55),norender;
+R5_60: REF(R5, 60),norender;
+R5_65: REF(R5, 65),norender;
+R5_70: REF(R5, 70),norender;
+R5_75: REF(R5, 75),norender;
+R5_80: REF(R5, 80),norender;
+R5_85: REF(R5, 85),norender;
+R5_90: REF(R5, 90),norender;
+R5_95: REF(R5, 95),norender;
+R5_100: REF(R5, 100),norender;
+R5_105: REF(R5, 105),norender;
+R5_110: REF(R5, 110),norender;
+R5_115: REF(R5, 115),norender;
+R5_120: REF(R5, 120),norender;
+R5_125: REF(R5, 125),norender;
+R5_130: REF(R5, 130),norender;
+R5_135: REF(R5, 135),norender;
+R5_140: REF(R5, 140),norender;
+R5_145: REF(R5, 145),norender;
+
+STD5: STD_PARALLEL(R5,
+R5_5,
+R5_10,
+R5_15,
+R5_20,
+R5_25,
+R5_30,
+R5_35,
+R5_40,
+R5_45,
+R5_50,
+R5_55,
+R5_60,
+R5_65,
+R5_70,
+R5_75,
+R5_80,
+R5_85,
+R5_90,
+R5_95,
+R5_100,
+R5_105,
+R5_110,
+R5_115,
+R5_120,
+R5_125,
+R5_130,
+R5_135,
+R5_140,
+R5_145),norender;
+
+AVG5: AVG_PARALLEL(R5,
+R5_5,
+R5_10,
+R5_15,
+R5_20,
+R5_25,
+R5_30,
+R5_35,
+R5_40,
+R5_45,
+R5_50,
+R5_55,
+R5_60,
+R5_65,
+R5_70,
+R5_75,
+R5_80,
+R5_85,
+R5_90,
+R5_95,
+R5_100,
+R5_105,
+R5_110,
+R5_115,
+R5_120,
+R5_125,
+R5_130,
+R5_135,
+R5_140,
+R5_145),norender;
+
+Z5: (R5 - AVG5) / STD5;
+
+// 1 Day Range %
+// The 1 day range as a percentage of price
+//=========================================
+
+R1: (H - L)/C,norender;
+SD1: STD(R1, 150),norender;
+AV1: MA(R1, 150),norender;
+MX1: HHV(R1, 150),norender;
+MN1: LLV(R1, 150),norender;
+Z1: (R1-AV1)/SD1;
+
+@SETHLINE(0);</Code>
+              <Params />
+            </Program>
+          </Programs>
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="Critical State Template" Description="">
+          <Namespaces />
+          <Programs>
+            <Program Name="KL_Scan_Critical_States_setup">
+              <FullName />
+              <Description />
+              <Code>// This script calculates the Range %
+// for the 5 day and 1 day sets
+
+// Price Location within Lookback Period
+
+L10:= (C-LLV(L, 10))/(HHV(H,10) - LLV(L, 10)),norender;
+L30:= (C-LLV(L, 30))/(HHV(H,30) - LLV(L, 30)),norender;
+L150:= (C-LLV(L, 150))/(HHV(H,150) - LLV(L, 150)),norender;
+SMA50:= MA(C, 50);
+
+// 5 Day Range %
+// The 5 day range as a percentage of price
+//=========================================
+
+R5:= (HHV(H, 5) - LLV(L, 5)) / C,norender;
+R5_5:= REF(R5, 5),norender;
+R5_10:= REF(R5, 10),norender;
+R5_15:= REF(R5, 15),norender;
+R5_20:= REF(R5, 20),norender;
+R5_25:= REF(R5, 25),norender;
+R5_30:= REF(R5, 30),norender;
+R5_35:= REF(R5, 35),norender;
+R5_40:= REF(R5, 40),norender;
+R5_45:= REF(R5, 45),norender;
+R5_50:= REF(R5, 50),norender;
+R5_55:= REF(R5, 55),norender;
+R5_60:= REF(R5, 60),norender;
+R5_65:= REF(R5, 65),norender;
+R5_70:= REF(R5, 70),norender;
+R5_75:= REF(R5, 75),norender;
+R5_80:= REF(R5, 80),norender;
+R5_85:= REF(R5, 85),norender;
+R5_90:= REF(R5, 90),norender;
+R5_95:= REF(R5, 95),norender;
+R5_100:= REF(R5, 100),norender;
+R5_105:= REF(R5, 105),norender;
+R5_110:= REF(R5, 110),norender;
+R5_115:= REF(R5, 115),norender;
+R5_120:= REF(R5, 120),norender;
+R5_125:= REF(R5, 125),norender;
+R5_130:= REF(R5, 130),norender;
+R5_135:= REF(R5, 135),norender;
+R5_140:= REF(R5, 140),norender;
+R5_145:= REF(R5, 145),norender;
+
+STD5:= STD_PARALLEL(R5,
+R5_5,
+R5_10,
+R5_15,
+R5_20,
+R5_25,
+R5_30,
+R5_35,
+R5_40,
+R5_45,
+R5_50,
+R5_55,
+R5_60,
+R5_65,
+R5_70,
+R5_75,
+R5_80,
+R5_85,
+R5_90,
+R5_95,
+R5_100,
+R5_105,
+R5_110,
+R5_115,
+R5_120,
+R5_125,
+R5_130,
+R5_135,
+R5_140,
+R5_145),norender;
+
+AVG5:= AVG_PARALLEL(R5,
+R5_5,
+R5_10,
+R5_15,
+R5_20,
+R5_25,
+R5_30,
+R5_35,
+R5_40,
+R5_45,
+R5_50,
+R5_55,
+R5_60,
+R5_65,
+R5_70,
+R5_75,
+R5_80,
+R5_85,
+R5_90,
+R5_95,
+R5_100,
+R5_105,
+R5_110,
+R5_115,
+R5_120,
+R5_125,
+R5_130,
+R5_135,
+R5_140,
+R5_145),norender;
+
+Z5:= (R5 - AVG5) / STD5;
+
+// 1 Day Range %
+// The 1 day range as a percentage of price
+//=========================================
+
+R1:= (H - L)/C,norender;
+SD1:= STD(R1, 150),norender;
+AV1:= MA(R1, 150),norender;
+MX1:= HHV(R1, 150),norender;
+MN1:= LLV(R1, 150),norender;
+Z1:= (R1-AV1)/SD1;
+
+
+Fireworks:= (L150 &gt; 0.9) &amp; (L30 &gt; 0.9) &amp; (Z5 &gt; 1);
+HumptyD:= (L150 &gt; 0.7) &amp; (L30 &lt; 0.1) &amp; (Z5 &lt;0 );
+FenceSitter:= (L150 &gt; 0.4 &amp; L150 &lt; 0.6) &amp; (L30 &gt; 0.4 &amp; L30 &lt; 0.6) &amp; (L10 &gt; 0.4 &amp; L10 &lt; 0.6) &amp; (Z5 &lt; 0);
+Godzilla:= (L150 &lt; 0.1) &amp; (L30 &lt; 0.1) &amp; (Z5 &gt; 1 );
+Catfish:= (L150 &lt; 0.1) &amp; (L30 &lt; 0.1) &amp; (Z5 &lt; 0);
+
+//Event:(HumptyD + FenceSitter + Godzilla + Catfish+Fireworks); 
+//Event: Catfish ;
+Event:(HumptyD + Godzilla +Fireworks); 
+
+
+</Code>
+              <Params />
+            </Program>
+          </Programs>
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="RLxSLOPE" Description="">
+          <Namespaces />
+          <Programs>
+            <Program Name="KL_SCAN_RLxSLOPE_Plus">
+              <FullName />
+              <Description>zScore of RLxSLOPE above Z and falling</Description>
+              <Code>// ZSCORE RLxSLOPE above &amp; falling
+// xPeriod = rl slope lookback
+// Lookback = lookback for average and std
+// ZThreshold = level reference
+ 
+RLx:= LRC(C,xPeriod);
+RLxSLPE:= (RLx - Ref(RLx, xPeriod))/ xPeriod;
+
+SD1:= STD(RLxSLPE, Lookback),norender;
+AV1:= MA(RLxSLPE, Lookback),norender;
+ 
+Z1:= (RLxSLPE-AV1)/SD1;
+ZHigh:= Z1 &gt; (ZThreshold);
+Zfalling:= Z1 &lt; Ref(Z1,1);
+
+ZH_FALL:= (ZHigh &amp; Zfalling);
+
+Event: Cross(ZH_FALL, 0.5);
+
+ </Code>
+              <Params>
+                <FormulaParam Name="xPeriod" DefaultValue="22" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Lookback" DefaultValue="130" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="zThreshold" DefaultValue="1" MinValue="0" MaxValue="5" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_SCAN_RLxSLOPE_Minus">
+              <FullName />
+              <Description>zScore of RLxSLOPE below Z and rising</Description>
+              <Code>// ZSCORE RLxSLOPE below and rising
+// xPeriod = rl slope lookback
+// Lookback = lookback for average and std
+// ZThreshold = level reference
+ 
+RLx:= LRC(C,xPeriod);
+RLxSLPE:= (RLx - Ref(RLx, xPeriod))/ xPeriod;
+
+SD1:= STD(RLxSLPE, Lookback),norender;
+AV1:= MA(RLxSLPE, Lookback),norender;
+ 
+Z1:= (RLxSLPE-AV1)/SD1;
+ZLow:= Z1 &lt; (ZThreshold);
+Zrising:= Z1 &gt; Ref(Z1,1);
+
+Event: Cross( ZLow &amp; Zrising, 0.5);
+
+ </Code>
+              <Params>
+                <FormulaParam Name="xPeriod" DefaultValue="22" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Lookback" DefaultValue="130" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="zThreshold" DefaultValue="-1" MinValue="-1000" MaxValue="0" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_SCAN_RLxSLOPE_Minus_twoSlopes">
+              <FullName />
+              <Description>zScore of RLxSLOPE below Z and rising</Description>
+              <Code>// ZSCORE RLxSLOPE below and rising
+// xPeriod = rl slope lookback
+// Lookback = lookback for average and std
+// ZThreshold = level reference
+// two periods to have fast crossing slow Zscores
+ 
+RLx:= LRC(C,xPeriod10);
+RLxSLPE:= (RLx - Ref(RLx, xPeriod10))/ xPeriod10;
+
+SD1:= STD(RLxSLPE, Lookback130);
+AV1:= MA(RLxSLPE, Lookback130);
+ 
+Z1Fast10:  (RLxSLPE-AV1)/SD1;
+//
+RLx_S:= LRC(C,xPeriod30);
+RLxSLPE_S:= (RLx_S - Ref(RLx_S, xPeriod30))/ xPeriod30;
+
+SD1_S:= STD(RLxSLPE_S, Lookback130);
+AV1_S:= MA(RLxSLPE_S, Lookback130);
+ 
+Z1Slow30: (RLxSLPE_S-AV1_S)/SD1_S;
+
+//
+Event: Cross(Z1Fast10, Z1Slow30) &amp; (Z1Slow30&lt; ZThreshold);
+
+ </Code>
+              <Params>
+                <FormulaParam Name="xPeriod10" DefaultValue="10" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Lookback130" DefaultValue="130" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="zThreshold" DefaultValue="-1" MinValue="-1000" MaxValue="0" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="xPeriod30" DefaultValue="22" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_RLxSLOPE">
+              <FullName />
+              <Description>zScore of RLxSLOPE</Description>
+              <Code>// ZSCORE RLxSLOPE positive and falling
+// xPeriod = rl slope lookback
+// Lookback = lookback for average and std
+ 
+ 
+RLx:= LRC(C,xPeriod);
+RLxSLPE:= (RLx - Ref(RLx, xPeriod))/ xPeriod;
+
+SD1:= STD(RLxSLPE, Lookback);
+AV1:= MA(RLxSLPE, Lookback);
+ 
+Z1: (RLxSLPE-AV1)/SD1;
+ zp1: 1;
+zp2: 2;
+zp3: 3;
+zn1: -1;
+zn2: -2;
+zn3: -3;
+zero: 0;
+
+ </Code>
+              <Params>
+                <FormulaParam Name="xPeriod" DefaultValue="22" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Lookback" DefaultValue="130" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_SCAN_RL10_30_90_ZSLOPE_LE">
+              <FullName />
+              <Description>zScore of RLxSLOPE SCAN LONG ENTRY</Description>
+              <Code>// ZSCORE RL10-30-90   
+// Lookback = lookback for average and std
+ 
+ 
+RL10:= LRC(C,8);
+RL30:= LRC(C,24);
+RL90:= LRC(C,72);
+
+RL10SLPE:= (RL10 - Ref(RL10, 8))/ 8;
+
+SD10:= STD(RL10SLPE, 2500);
+AV10:= MA(RL10SLPE, 2500);
+ Z10: (RL10SLPE-AV10)/SD10,Width2,ColorBlue;
+
+RL30SLPE:= (RL30 - Ref(RL30, 24))/ 24;
+
+SD30:= STD(RL30SLPE, 2500);
+AV30:= MA(RL30SLPE, 2500);
+ Z30: (RL30SLPE-AV30)/SD30,Width3,ColorBlack;
+
+RL90SLPE:= (RL90 - Ref(RL90, 72))/ 72;
+
+SD90:= STD(RL90SLPE, 2500);
+AV90:= MA(RL90SLPE, 2500);
+ Z90: (RL90SLPE-AV90)/SD90,Width3,ColorRed;
+ 1;
+2;
+3;
+ -1;
+ -2;
+ -3;
+0;
+
+ZENTRY:= (Z30 &gt; REF(Z30, 1)) &amp; Z30 &lt; ZThreshold;
+//ZENTRY:= (Z90 &gt; REF(Z90, 1)) &amp; Z90 &lt; ZThreshold;
+ 
+
+Event: Cross(ZENTRY, 0.5);
+
+
+ </Code>
+              <Params>
+                <FormulaParam Name="Zthreshold" DefaultValue="-1" MinValue="-10" MaxValue="3" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_SCAN_RL10_30_90_ZSLOPE_LX">
+              <FullName />
+              <Description>zScore of RLxSLOPE SCAN LONG EXIT</Description>
+              <Code>// ZSCORE RL10-30-90   
+// Lookback = lookback for average and std
+ 
+ 
+RL10:= LRC(C,8);
+RL30:= LRC(C,24);
+RL90:= LRC(C,72);
+
+RL10SLPE:= (RL10 - Ref(RL10, 8))/ 8;
+
+SD10:= STD(RL10SLPE, 2500);
+AV10:= MA(RL10SLPE, 2500);
+ Z10: (RL10SLPE-AV10)/SD10,Width2,ColorBlue;
+
+RL30SLPE:= (RL30 - Ref(RL30, 24))/ 24;
+
+SD30:= STD(RL30SLPE, 2500);
+AV30:= MA(RL30SLPE, 2500);
+ Z30: (RL30SLPE-AV30)/SD30,Width3,ColorBlack;
+
+RL90SLPE:= (RL90 - Ref(RL90, 72))/ 72;
+
+SD90:= STD(RL90SLPE, 2500);
+AV90:= MA(RL90SLPE, 2500);
+ Z90: (RL90SLPE-AV90)/SD90,Width3,ColorRed;
+
+ZEXIT:= Z30 &lt; REF(Z30, 1);
+
+Event: Cross(ZEXIT, 0.5);
+
+
+ </Code>
+              <Params />
+            </Program>
+            <Program Name="KL_SCAN_RLxPCHG_Plus">
+              <FullName />
+              <Description>zScore of RLxSLOPE above Z and falling</Description>
+              <Code>// ZSCORE RLxSLOPE above &amp; falling
+// xPeriod = rl slope lookback
+// Lookback = lookback for average and std
+// ZThreshold = level reference
+ 
+RLx:= LRC(C,xPeriod);
+RLxSLPE:= ((RLx/Ref(RLx, xPeriod))-1) *100;
+
+SD1:= STD(RLxSLPE, Lookback),norender;
+AV1:= MA(RLxSLPE, Lookback),norender;
+ 
+Z1:= (RLxSLPE-AV1)/SD1;
+ZHigh:= Z1 &gt; (ZThreshold);
+Zfalling:= Z1 &lt; Ref(Z1,1);
+
+ZH_FALL:= (ZHigh &amp; Zfalling);
+
+Event: Cross(ZH_FALL, 0.5);
+
+ </Code>
+              <Params>
+                <FormulaParam Name="xPeriod" DefaultValue="22" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Lookback" DefaultValue="130" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="zThreshold" DefaultValue="1" MinValue="0" MaxValue="5" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_SCAN_RLxPCHG_Minus">
+              <FullName />
+              <Description>zScore of RLxSLOPE below Z and rising</Description>
+              <Code>// ZSCORE RLxSLOPE below and rising
+// xPeriod = rl slope lookback
+// Lookback = lookback for average and std
+// ZThreshold = level reference
+ 
+RLx:= LRC(C,xPeriod);
+RLxSLPE:= ((RLx/Ref(RLx, xPeriod))-1) *100;
+
+SD1:= STD(RLxSLPE, Lookback),norender;
+AV1:= MA(RLxSLPE, Lookback),norender;
+ 
+Z1:= (RLxSLPE-AV1)/SD1;
+ZLow:= Z1 &lt; (ZThreshold);
+Zrising:= Z1 &gt; Ref(Z1,1);
+
+Event: Cross( ZLow &amp; Zrising, 0.5);
+
+ </Code>
+              <Params>
+                <FormulaParam Name="xPeriod" DefaultValue="22" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Lookback" DefaultValue="130" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="zThreshold" DefaultValue="-1" MinValue="-1000" MaxValue="0" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+          </Programs>
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="GAPSTAT" Description="">
+          <Namespaces />
+          <Programs>
+            <Program Name="KL_SCAN_GapStat_R_Pos">
+              <FullName />
+              <Description>//  Gapstat Ratio for Ratio &gt; 1</Description>
+              <Code>//  Gapstat Ratio for Ratio &gt; 1
+
+gap_percent:= ABS((O - Ref(C,1))/C );
+
+avg_gap_percent:= MA( gap_percent, 200);
+stddev_gap_percent:= STD(gap_percent, 200);
+
+gap_stat:= C * (avg_gap_percent+stddev_gap_percent);
+
+openPrice:= O;
+openingGapSize:= openPrice-Ref(C,1);
+
+openingGapSize_gapstat:= openingGapSize/gap_stat;
+
+GapStat_Ratio:= openingGapSize_gapstat &gt; GapstatR_threshold_plus;
+
+Event: Cross(GapStat_Ratio, 0.5);</Code>
+              <Params>
+                <FormulaParam Name="GapstatR_threshold_plus" DefaultValue="1" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_SCAN_GapStat_R_Neg">
+              <FullName />
+              <Description>//  Gapstat Ratio for Ratio &lt; -1</Description>
+              <Code>//  Gapstat Ratio for Ratio &gt; 1
+
+gap_percent:= ABS((O - Ref(C,1))/C );
+
+avg_gap_percent:= MA( gap_percent, 200);
+stddev_gap_percent:= STD(gap_percent, 200);
+
+gap_stat:= C * (avg_gap_percent+stddev_gap_percent);
+
+openPrice:= O;
+openingGapSize:= openPrice-Ref(C,1);
+
+openingGapSize_gapstat:= openingGapSize/gap_stat;
+
+GapStat_Ratio: openingGapSize_gapstat &lt; GapstatR_threshold_minus;
+
+Event: Cross(GapStat_Ratio, 0.5);
+
+</Code>
+              <Params>
+                <FormulaParam Name="GapstatR_threshold_minus" DefaultValue="-1" MinValue="-100" MaxValue="0" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_SCAN_GapStat_R_Pos_Single">
+              <FullName />
+              <Description>//  Gapstat Ratio for Ratio &gt; 1  use scripted entry and exit rules</Description>
+              <Code>//  Gapstat Ratio for Ratio &gt; 1
+
+gap_percent:= ABS((O - Ref(C,1))/C );
+
+avg_gap_percent:= MA( gap_percent, 200);
+stddev_gap_percent:= STD(gap_percent, 200);
+
+gap_stat:= C * (avg_gap_percent+stddev_gap_percent);
+
+openPrice:= O;
+openingGapSize:= openPrice-Ref(C,1);
+
+openingGapSize_gapstat:= openingGapSize/gap_stat;
+
+// ENTRY 
+LONGENTRYEVENT: openingGapSize_gapstat &gt; GapstatR_threshold_plus;
+//LONGENTRYEVENT: O &gt; REF(C,1);
+
+
+//ENTRY PRICE IS THE OPEN PRICE
+LONGENTRYPRICE: O, norender;
+
+//EXIT ON THE SAME BAR AS ENTRY
+LONGEXITEVENT: openingGapSize_gapstat &gt; GapstatR_threshold_plus;
+//LONGEXITEVENT: O &gt; REF(C,1);
+
+// EXIT PRICE IS THE CLOSE PRICE
+LONGEXITPRICE: C, norender;
+
+// RUN TO GENERATE ENTRIES AND EXITS, CHOOSE "USE SCRIPTED ENTRY AND EXIT RULES"
+
+@SETATTR(LONGENTRYEVENT, 'LongEntryEvent');
+@SETATTR(LONGENTRYPRICE, 'LongEntryPrice');
+@SETATTR(LONGEXITEVENT, 'LongExitEvent');
+@SETATTR(LONGEXITPRICE, 'LongExitPrice');</Code>
+              <Params>
+                <FormulaParam Name="GapstatR_threshold_plus" DefaultValue="1.5" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_SCAN_GapStat_R_Neg_single">
+              <FullName />
+              <Description>//  Gapstat Ratio for Ratio &lt; -1</Description>
+              <Code>//  Gapstat Ratio for Ratio &gt; 1
+
+gap_percent:= ABS((O - Ref(C,1))/C );
+
+avg_gap_percent:= MA( gap_percent, 200);
+stddev_gap_percent:= STD(gap_percent, 200);
+
+gap_stat:= C * (avg_gap_percent+stddev_gap_percent);
+
+openPrice:= O;
+openingGapSize:= openPrice-Ref(C,1);
+
+openingGapSize_gapstat:= openingGapSize/gap_stat;
+
+
+// ENTRY 
+LONGENTRYEVENT: openingGapSize_gapstat &lt; GapstatR_threshold_minus;
+
+//ENTRY PRICE IS THE OPEN PRICE
+LONGENTRYPRICE: O, norender;
+
+//EXIT ON THE SAME BAR AS ENTRY
+LONGEXITEVENT: openingGapSize_gapstat &lt; GapstatR_threshold_minus;
+
+// EXIT PRICE IS THE CLOSE PRICE
+LONGEXITPRICE: C, norender;
+
+// RUN TO GENERATE ENTRIES AND EXITS, CHOOSE "USE SCRIPTED ENTRY AND EXIT RULES"
+
+@SETATTR(LONGENTRYEVENT, 'LongEntryEvent');
+@SETATTR(LONGENTRYPRICE, 'LongEntryPrice');
+@SETATTR(LONGEXITEVENT, 'LongExitEvent');
+@SETATTR(LONGEXITPRICE, 'LongExitPrice');
+</Code>
+              <Params>
+                <FormulaParam Name="GapstatR_threshold_minus" DefaultValue="-1.5" MinValue="-100" MaxValue="0" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_SCAN_GapStat_R_Inside_single">
+              <FullName />
+              <Description>//  Gapstat Ratio for Ratio between +/- 1 single entry exit script</Description>
+              <Code>//  Gapstat Ratio for Ratio &gt; 1
+
+gap_percent:= ABS((O - Ref(C,1))/C );
+
+avg_gap_percent:= MA( gap_percent, 200);
+stddev_gap_percent:= STD(gap_percent, 200);
+
+gap_stat:= C * (avg_gap_percent+stddev_gap_percent);
+
+openPrice:= O;
+openingGapSize:=ABS( openPrice-Ref(C,1));
+
+openingGapSize_gapstat:= openingGapSize/gap_stat;
+
+// ENTRY 
+LONGENTRYEVENT: openingGapSize_gapstat &lt; GapstatR_threshold_inside;
+
+//ENTRY PRICE IS THE OPEN PRICE
+LONGENTRYPRICE: O, norender;
+
+//EXIT ON THE SAME BAR AS ENTRY
+LONGEXITEVENT: openingGapSize_gapstat &lt; GapstatR_threshold_inside;
+
+// EXIT PRICE IS THE CLOSE PRICE
+LONGEXITPRICE: C, norender;
+
+// RUN TO GENERATE ENTRIES AND EXITS, CHOOSE "USE SCRIPTED ENTRY AND EXIT RULES"
+
+@SETATTR(LONGENTRYEVENT, 'LongEntryEvent');
+@SETATTR(LONGENTRYPRICE, 'LongEntryPrice');
+@SETATTR(LONGEXITEVENT, 'LongExitEvent');
+@SETATTR(LONGEXITPRICE, 'LongExitPrice');
+
+</Code>
+              <Params>
+                <FormulaParam Name="GapstatR_threshold_inside" DefaultValue="0.8" MinValue="0.1" MaxValue="1" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+          </Programs>
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="RLFF" Description="">
+          <Namespaces />
+          <Programs />
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="RISKZ" Description="">
+          <Namespaces />
+          <Programs>
+            <Program Name="KL_SCAN_RISKZ_VIX_Minus">
+              <FullName />
+              <Description>zScore of VIX30 TO VIX10</Description>
+              <Code>// ZSCORE RLxSLOPE positive and falling
+// xPeriod = rl slope lookback
+// Lookback = lookback for average and std
+// ZThreshold = level reference
+
+SC1:= Fml(Sym1,'C');
+VIX30:= MA(SC1,30);
+VIX10:= MA(SC1,10);
+INDEX30_10:= VIX30/VIX10;
+INDEX30_10_1000:= MA(INDEX30_10, 1000);
+INDEX30_10_1000_SD:= STD(INDEX30_10, 1000);
+
+ZSCORE_VIX:=  (INDEX30_10 - INDEX30_10_1000)/INDEX30_10_1000_SD;
+ 
+ZLOW:= ZSCORE_VIX &lt; (ZThreshold);
+Z_RISING:= ZSCORE_VIX &gt; Ref(ZSCORE_VIX,1);
+
+Event:  ZLOW &amp; Z_RISING &amp; (C &gt; REF(C,1));
+
+ </Code>
+              <Params>
+                <FormulaParam Name="zThreshold" DefaultValue="-1" MinValue="-1000" MaxValue="0" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Sym1" DefaultValue="^VIX" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+              </Params>
+            </Program>
+            <Program Name="KL_SCAN_RISKZ_VIX_Plus">
+              <FullName />
+              <Description>zScore of VIX30 TO VIX10</Description>
+              <Code>// ZSCORE RLxSLOPE positive and falling
+// xPeriod = rl slope lookback
+// Lookback = lookback for average and std
+// ZThreshold = level reference
+
+SC1:= Fml(Sym1,'C');
+VIX30:= MA(SC1,30);
+VIX10:= MA(SC1,10);
+INDEX30_10:= VIX30/VIX10;
+INDEX30_10_1000:= MA(INDEX30_10, 1000);
+INDEX30_10_1000_SD:= STD(INDEX30_10, 1000);
+
+ZSCORE_VIX:=  (INDEX30_10 - INDEX30_10_1000)/INDEX30_10_1000_SD;
+ 
+ZH:= ZSCORE_VIX &gt; (ZThreshold);
+Z_fall:= ZSCORE_VIX &lt; Ref(ZSCORE_VIX,1);
+
+Event:  ZH &amp; Z_fall;
+
+ </Code>
+              <Params>
+                <FormulaParam Name="zThreshold" DefaultValue="1" MinValue="0" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Sym1" DefaultValue="^VIX" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+              </Params>
+            </Program>
+            <Program Name="KL_RISKZ_VIX">
+              <FullName />
+              <Description>zScore of VIX30 TO VIX10</Description>
+              <Code>// ZSCORE RLxSLOPE positive and falling
+// xPeriod = rl slope lookback
+// Lookback = lookback for average and std
+// ZThreshold = level reference
+
+SC1:= Fml(Sym1,'C');
+VIX30:= MA(SC1,30);
+VIX10:= MA(SC1,10);
+INDEX30_10:= VIX30/VIX10;
+INDEX30_10_1000:= MA(INDEX30_10, 1000);
+INDEX30_10_1000_SD:= STD(INDEX30_10, 1000);
+
+ZSCORE_VIX:  (INDEX30_10 - INDEX30_10_1000)/INDEX30_10_1000_SD, COLORSTICK;
+
+Z0: 0;
+Z1: 1;
+Z2: 2;
+Z3: 3;
+ZN1: -1;
+ZN2: -2;
+ZN3: -3; </Code>
+              <Params>
+                <FormulaParam Name="Sym1" DefaultValue="^VIX" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+              </Params>
+            </Program>
+            <Program Name="KL_RISKZ_VXN">
+              <FullName />
+              <Description>zScore of VIX30 TO VIX10  VXN  NASDAQ</Description>
+              <Code>// ZSCORE RLxSLOPE positive and falling
+// xPeriod = rl slope lookback
+// Lookback = lookback for average and std
+// ZThreshold = level reference
+
+SC1:= Fml(Sym1,'C');
+VIX30:= MA(SC1,30);
+VIX10:= MA(SC1,10);
+INDEX30_10:= VIX30/VIX10;
+INDEX30_10_1000:= MA(INDEX30_10, 1000);
+INDEX30_10_1000_SD:= STD(INDEX30_10, 1000);
+
+ZSCORE_VXN:  (INDEX30_10 - INDEX30_10_1000)/INDEX30_10_1000_SD, COLORSTICK;
+
+Z0: 0;
+Z1: 1;
+Z2: 2;
+Z3: 3;
+ZN1: -1;
+ZN2: -2;
+ZN3: -3; </Code>
+              <Params>
+                <FormulaParam Name="Sym1" DefaultValue="^VXN" MinValue="" MaxValue="" Description="" Step="" ParamType="symbol" />
+              </Params>
+            </Program>
+            <Program Name="KL_RISKZ_EQUITY">
+              <FullName />
+              <Description>zScore of EQUTYMA 30 TO EQUITY MA10</Description>
+              <Code>// ZSCORE RLxSLOPE positive and falling
+// xPeriod = rl slope lookback
+// Lookback = lookback for average and std
+// ZThreshold = level reference
+
+EQ30:= MA(CLOSE,30);
+EQ10:= MA(CLOSE,10);
+INDEX30_10:= EQ10/EQ30;
+INDEX30_10_1000:= MA(INDEX30_10, 1000);
+INDEX30_10_1000_SD:= STD(INDEX30_10, 1000);
+
+ZSCORE_EIX:  (INDEX30_10 - INDEX30_10_1000)/INDEX30_10_1000_SD, COLORSTICK;
+
+Z0: 0;
+Z1: 1;
+Z2: 2;
+Z3: 3;
+ZN1: -1;
+ZN2: -2;
+ZN3: -3; </Code>
+              <Params />
+            </Program>
+          </Programs>
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="RStat_MyRisk" Description="">
+          <Namespaces />
+          <Programs />
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="NDX" Description="">
+          <Namespaces />
+          <Programs>
+            <Program Name="KL_Scan_NDX_Plus">
+              <FullName />
+              <Description>NDX indicator</Description>
+              <Code>// KL_NDX_Plus
+// 1mo = 21, 3 mo =64, 6 mo = 130, 1 yr = 250 
+
+NDX:= 100 * (C - LLV(REF(L,1), Period))/(HHV(REF(H,1), Period) - LLV(REF(L,1), Period));
+
+NDXPLUS:=  NDX &gt; PLUS_Threshold;
+
+NDXMINUS:= NDX &lt; MINUS_Threshold;
+ 
+Event: (NDXPLUS);</Code>
+              <Params>
+                <FormulaParam Name="PLUS_Threshold" DefaultValue="100" MinValue="50" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="MINUS_Threshold" DefaultValue="0" MinValue="-1000" MaxValue="50" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Period" DefaultValue="10" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_Scan_NDX_Minus">
+              <FullName />
+              <Description>NDX indicator BELOW AND RISING</Description>
+              <Code>// KL_NDX_Minus
+// 1mo = 21, 3 mo =64, 6 mo = 130, 1 yr = 250 
+
+NDX:= 100 * (C - LLV(REF(L,1), Period))/(HHV(REF(H,1), Period) - LLV(REF(L,1), Period));
+
+NDXPLUS:=  NDX &gt; PLUS_Threshold;
+
+NDXMINUS:= NDX &lt; MINUS_Threshold;
+ 
+Event: (NDXMINUS) &amp; (NDXMINUS &gt; REF(NDXMINUS,1) );</Code>
+              <Params>
+                <FormulaParam Name="PLUS_Threshold" DefaultValue="100" MinValue="50" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="MINUS_Threshold" DefaultValue="0" MinValue="-1000" MaxValue="50" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="Period" DefaultValue="10" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_NDX">
+              <FullName />
+              <Description>NDX indicator</Description>
+              <Code>// KL_NDX_Plus
+// 1mo = 21, 3 mo =64, 6 mo = 130, 1 yr = 250 
+
+NDX: 100 * (C - LLV(REF(L,1), Period))/(HHV(REF(H,1), Period) - LLV(REF(L,1), Period));
+
+NDX100: 100;
+NDX0: 0;</Code>
+              <Params>
+                <FormulaParam Name="Period" DefaultValue="10" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+          </Programs>
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="TVR" Description="">
+          <Namespaces />
+          <Programs />
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="MACD_Seasons" Description="">
+          <Namespaces />
+          <Programs />
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="SPECIAL" Description="">
+          <Namespaces />
+          <Programs>
+            <Program Name="KL_SCAN_MACD_BULL">
+              <FullName />
+              <Description />
+              <Code>MACD:= EMA(CLOSE,FASTPERIOD) - EMA(CLOSE,SLOWPERIOD);
+SIG := EMA(MACD,M),Width2,ColorBlue;
+HIST:= (MACD-SIG), COLORSTICK;
+
+MID:=  MA(SIG,BB_PERIOD),Width2,ColorGreen;
+UPPER:=MID + N_BB_STD*STDP(SIG,BB_PERIOD);
+LOWER:= MID - N_BB_STD*STDP(SIG,BB_PERIOD);
+
+SIG_LONG:= SIG &gt; REF(SIG, 1 ) &amp; REF(SIG,1) &lt;0;
+MID_UNDER:= MID &lt; 0;
+
+EVENT: Cross(SIG_LONG, MID_UNDER);
+
+
+</Code>
+              <Params>
+                <FormulaParam Name="FASTPERIOD" DefaultValue="4" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="SLOWPERIOD" DefaultValue="30" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="M" DefaultValue="5" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="BB_PERIOD" DefaultValue="3" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N_BB_STD" DefaultValue="1" MinValue="0.1" MaxValue="10000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_SCAN_MACD_BEAR">
+              <FullName />
+              <Description />
+              <Code>MACD:= EMA(CLOSE,FASTPERIOD) - EMA(CLOSE,SLOWPERIOD);
+SIG := EMA(MACD,M),Width2,ColorBlue;
+HIST:= (MACD-SIG), COLORSTICK;
+
+MID:=  MA(SIG,BB_PERIOD),Width2,ColorGreen;
+UPPER:=MID + N_BB_STD*STDP(SIG,BB_PERIOD);
+LOWER:= MID - N_BB_STD*STDP(SIG,BB_PERIOD);
+
+SIG_LONG:= SIG &lt; REF(SIG, 1 ) &amp; REF(SIG,1) &gt; 0;
+MID_UNDER:= MID &gt; 0;
+
+EVENT: Cross(SIG_LONG, MID_UNDER);
+
+
+
+ </Code>
+              <Params>
+                <FormulaParam Name="FASTPERIOD" DefaultValue="4" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="SLOWPERIOD" DefaultValue="30" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="M" DefaultValue="5" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="BB_PERIOD" DefaultValue="3" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N_BB_STD" DefaultValue="1" MinValue="0.1" MaxValue="10000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+            <Program Name="KL_SCAN_MACD_BEAR_3D">
+              <FullName />
+              <Description />
+              <Code>aggEvent:= FML('My.KL_SCAN_MACD_BEAR#DAY3');
+event: CROSS(aggEvent, 0.5);</Code>
+              <Params />
+            </Program>
+            <Program Name="KL_SCAN_MACD_BULL_3D">
+              <FullName />
+              <Description />
+              <Code>aggEvent:= FML('My.KL_SCAN_MACD_BULL#DAY3');
+event: CROSS(aggEvent, 0.5);</Code>
+              <Params />
+            </Program>
+            <Program Name="KL_SCAN_MACD_BULL_9D">
+              <FullName />
+              <Description />
+              <Code>aggEvent:= FML('My.KL_SCAN_MACD_BULL#DAY9');
+event: CROSS(aggEvent, 0.5);</Code>
+              <Params />
+            </Program>
+            <Program Name="KL_SCAN_MACD_BEAR_9D">
+              <FullName />
+              <Description />
+              <Code>aggEvent:= FML('My.KL_SCAN_MACD_BEAR#DAY9');
+event: CROSS(aggEvent, 0.5);</Code>
+              <Params />
+            </Program>
+            <Program Name="KL_MACD_43005">
+              <FullName />
+              <Description />
+              <Code>MACD: EMA(CLOSE,FASTPERIOD) - EMA(CLOSE,SLOWPERIOD);
+SIG : EMA(MACD,M),Width2,ColorBlue;
+HIST: (MACD-SIG), COLORSTICK;
+
+MID:  MA(SIG,BB_PERIOD),Width2,ColorGreen;
+UPPER: MID + N_BB_STD*STDP(SIG,BB_PERIOD);
+LOWER: MID - N_BB_STD*STDP(SIG,BB_PERIOD);
+
+
+
+
+</Code>
+              <Params>
+                <FormulaParam Name="FASTPERIOD" DefaultValue="4" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="SLOWPERIOD" DefaultValue="30" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="M" DefaultValue="5" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="BB_PERIOD" DefaultValue="3" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N_BB_STD" DefaultValue="1" MinValue="0.1" MaxValue="10000" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+          </Programs>
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="WMB_XD" Description="WMB3 ON DAILY">
+          <Namespaces />
+          <Programs>
+            <Program Name="KL_SCAN_WMB_D">
+              <FullName />
+              <Description />
+              <Code> 
+MACD:= EMA(CLOSE,FASTPERIOD) - EMA(CLOSE,SLOWPERIOD);
+SIG := EMA(MACD,M),Width2,ColorBlue;
+HIST:= (MACD-SIG), COLORSTICK;
+
+//MACD_UPTICK:  CROSS( (HIST &lt;0) &amp;  (HIST &gt; REF(HIST,1)), 0.5) ;
+MACD_UPTICK:=  (HIST &lt;0) &amp;  (HIST &gt; REF(HIST,1)) ;
+
+
+// WILLIAMS %R (10)
+
+WMR:=  -100*(HHV(HIGH,N_WMR)-CLOSE)/(HHV(HIGH,N_WMR)-LLV(LOW,N_WMR));
+
+WMR_OVERSOLD:= (WMR &lt; WMR_Threshold) &amp; (WMR &gt; REF(WMR,1) );
+
+//  Breakout
+
+BREAKOUT:= H &gt; REF(H,1);
+
+//
+LONG:= WMR_OVERSOLD &amp; MACD_UPTICK &amp; BREAKOUT;
+
+EVENT: Cross(LONG, 0.5);
+
+</Code>
+              <Params>
+                <FormulaParam Name="FASTPERIOD" DefaultValue="10" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="SLOWPERIOD" DefaultValue="30" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="M" DefaultValue="5" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N_WMR" DefaultValue="10" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="WMR_Threshold" DefaultValue="-80" MinValue="-120" MaxValue="120" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+          </Programs>
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+        <Namespace Name="SIM_WITH_STOPS" Description="">
+          <Namespaces />
+          <Programs>
+            <Program Name="KL_SIM_WMBD_wstop">
+              <FullName />
+              <Description />
+              <Code> 
+MACD:= EMA(CLOSE,FASTPERIOD) - EMA(CLOSE,SLOWPERIOD);
+SIG := EMA(MACD,M),Width2,ColorBlue;
+HIST:= (MACD-SIG), COLORSTICK;
+
+//MACD_UPTICK:  CROSS( (HIST &lt;0) &amp;  (HIST &gt; REF(HIST,1)), 0.5) ;
+MACD_UPTICK:=  (HIST &lt;0) &amp;  (HIST &gt; REF(HIST,1)) ;
+
+
+// WILLIAMS %R (10)
+
+WMR:=  -100*(HHV(HIGH,N_WMR)-CLOSE)/(HHV(HIGH,N_WMR)-LLV(LOW,N_WMR));
+
+WMR_OVERSOLD:= (WMR &lt; WMR_Threshold) &amp; (WMR &gt; REF(WMR,1) );
+
+//  Breakout
+
+BREAKOUT:= H &gt; REF(H,1);
+
+//
+LONG:= WMR_OVERSOLD &amp; MACD_UPTICK &amp; BREAKOUT;
+
+//EVENT: Cross(LONG, 0.5);
+
+
+// Method using Scripted Entry and exit rules
+//P:= PSAR(0.02, 0.2);
+
+// Entry Event is theWMB signal
+EntryEvent: CROSS(LONG, 0.5);
+
+// Entry price is the Close price on the entry bar
+EntryPrice: VALUEWHEN(C, EntryEvent);
+
+// Regular Exit event is the BEAR PSAR flip    PSAR SWITCH EXIT 1-YES, 0- NO
+RegularExitEvent: PSAR_EXIT &amp; Cross(PSAR_F(LRC(C, 10),0.02, 0.14),LRC(C, 10));
+
+// Regular Exit price is the close price on the Exit bar
+RegularExitPrice: VALUEWHEN(C, RegularExitEvent);
+
+// Stop Exit Event is if Close Price &lt; Entry Price - XATR
+
+TR:= MAX(H - L, ABS(REF(C, 1) - H), ABS(REF(C, 1) - L));
+MATR:= MA(TR, 14);
+RSTOP:= XATR * MATR;
+
+StopExitEvent: C &lt; EntryPrice - RSTOP;
+
+
+
+// Stop Exit price is the Close of the Stop event bar
+StopPrice: VALUEWHEN(C, StopExitEvent);
+
+// Actual Exit event is either regular exit OR Stop exit
+ActualExitEvent: RegularExitEvent| StopExitEvent;
+
+// Actual Exit Price is either Regular exit price or stop exit price
+ActualExitPrice: IF(StopExitEvent, StopPrice, RegularExitPrice);
+
+// Assign each of the lines to a trade simulation attribute
+// Then you can run this script to generate entries AND exits
+// And choosed 'Use Scripted Entry and Exit rules
+@SETATTR(EntryEvent, 'LongEntryEvent');
+@SETATTR(EntryPrice, 'LongEntryPrice');
+@SETATTR(ActualExitEvent,  'LongExitEvent');
+@SETATTR(ActualExitPrice, 'LongExitPrice');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</Code>
+              <Params>
+                <FormulaParam Name="FASTPERIOD" DefaultValue="10" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="SLOWPERIOD" DefaultValue="30" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="M" DefaultValue="5" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="N_WMR" DefaultValue="10" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="WMR_Threshold" DefaultValue="-80" MinValue="-120" MaxValue="120" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="XATR" DefaultValue="2" MinValue="1" MaxValue="100" Description="" Step="" ParamType="double" />
+                <FormulaParam Name="PSAR_EXIT" DefaultValue="1" MinValue="0" MaxValue="1" Description="" Step="" ParamType="double" />
+              </Params>
+            </Program>
+          </Programs>
+          <GroupOnly>true</GroupOnly>
+        </Namespace>
+      </Namespaces>
+      <Programs />
+      <GroupOnly>false</GroupOnly>
+    </Namespace>
+  </Namespaces>
+  <Programs />
+  <GroupOnly>false</GroupOnly>
+</Namespace>

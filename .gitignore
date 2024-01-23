@@ -1,0 +1,16 @@
+# Ignore everything
+*
+
+# Except these two files
+!.gitignore
+!README.md
+
+
+# Allow specific files from these folders
+!/Chart Scripts/
+!/Templates/
+
+# List the specific files to not be ignored by git
+!/Chart Scripts/OBUG_Scripts.xml
+!/Templates/KL_SwingSystems_customV2.xlsx
+
