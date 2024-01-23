@@ -19,3 +19,5 @@ At the moment, only 1 template is being tracked:
 ### KL_SwingSystems_customV2.xlsx 
 This template contains references to the scripts in the **OBUG_Scripts.xml** file, and so you need both the template and the script file in order to be able to run the template in EdgeRater.
 
+# Notes
+
