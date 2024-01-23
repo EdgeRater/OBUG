@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Namespace xmlns:Formula="http://www.edgerater.com" Name="FML" Version="1.0.0.130">
+<Namespace xmlns:Formula="http://www.edgerater.com" Name="FML" Version="1.0.0.129">
   <Namespaces>
     <Namespace Name="OB" Version="" Description="">
       <Namespaces>
@@ -619,116 +619,6 @@ BTL1:= TRPCT &gt; MATR + SDTR;
 BTU1:= TRPCT &lt; MATR - SDTR;
 
 event:  !BTL1 &amp; !BTU1;</Code>
-              <Params />
-            </Program>
-          </Programs>
-          <GroupOnly>true</GroupOnly>
-        </Namespace>
-        <Namespace Name="3d9d" Description="3d9d setups&#xD;&#xA;">
-          <Namespaces />
-          <Programs>
-            <Program Name="BASE">
-              <FullName />
-              <Description />
-              <Code>event: CROSS(C, MA(C,10));</Code>
-              <Params />
-            </Program>
-            <Program Name="WEEKLY_BASE">
-              <FullName />
-              <Description />
-              <Code>weeklyevent:FML('My.BASE#WEEK1');
-event: CROSS(weeklyevent, 0.5);</Code>
-              <Params />
-            </Program>
-            <Program Name="AGGTEST">
-              <FullName />
-              <Description />
-              <Code>//A3O: FML('O#DAY9');
-//A3H: FML('H#DAY9');
-//A3L: FML('L#DAY9');
-A3C: FML('C#WEEK1');</Code>
-              <Params />
-            </Program>
-            <Program Name="AGGREGATE_9">
-              <FullName />
-              <Description />
-              <Code>A9: FML('My.BASETEST()#DAY9'); 
-A2: FML('My.BASETEST()#DAY2'); 
-A3: FML('My.BASETEST()#DAY3')</Code>
-              <Params />
-            </Program>
-            <Program Name="BASETEST">
-              <FullName />
-              <Description />
-              <Code>COUNT(C, 0);</Code>
-              <Params />
-            </Program>
-            <Program Name="AGG9">
-              <FullName />
-              <Description />
-              <Code>FOO: FML('My.BASESCRIPT()#DAY9'); 
-BAR: FML('My.BASESCRIPT()#DAY3')</Code>
-              <Params />
-            </Program>
-            <Program Name="BASESCRIPT">
-              <FullName />
-              <Description />
-              <Code>MA(C,10);</Code>
-              <Params />
-            </Program>
-            <Program Name="KL_PSAR_FLIP_BEAR">
-              <FullName />
-              <Description />
-              <Code>Event:Cross(PSAR_F(LRC(C, FastPeriod),Acc,AccLimit),LRC(C, FastPeriod));</Code>
-              <Params>
-                <FormulaParam Name="FastPeriod" DefaultValue="10" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="Acc" DefaultValue="0.02" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="AccLimit" DefaultValue="0.14" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
-              </Params>
-            </Program>
-            <Program Name="KL_PSAR_FLIP_BULL">
-              <FullName />
-              <Description />
-              <Code>Event:Cross(LRC(C, FastPeriod),PSAR_F(LRC(C, FastPeriod),Acc, AccLimit));</Code>
-              <Params>
-                <FormulaParam Name="FastPeriod" DefaultValue="10" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="Acc" DefaultValue="0.02" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="AccLimit" DefaultValue="0.14" MinValue="0" MaxValue="100" Description="" Step="" ParamType="double" />
-              </Params>
-            </Program>
-            <Program Name="KL_SCAN_PSAR_FLIP_BULL_3D">
-              <FullName />
-              <Description />
-              <Code>aggEvent: FML('My.KL_PSAR_FLIP_BULL#DAY3');
-event: CROSS(aggEvent, 0.5);</Code>
-              <Params />
-            </Program>
-            <Program Name="KL_SCAN_PSAR_FLIP_BEAR_9D">
-              <FullName />
-              <Description />
-              <Code>aggEvent: FML('My.KL_PSAR_FLIP_BEAR#DAY9');
-event: CROSS(aggEvent, 0.5);</Code>
-              <Params />
-            </Program>
-            <Program Name="KL_SCAN_PSAR_FLIP_BULL_9D">
-              <FullName />
-              <Description />
-              <Code>aggEvent: FML('My.KL_PSAR_FLIP_BULL#DAY9');
-event: CROSS(aggEvent, 0.5);</Code>
-              <Params />
-            </Program>
-            <Program Name="KL_SCAN_PSAR_FLIP_BEAR_1D">
-              <FullName />
-              <Description />
-              <Code>aggEvent: FML('My.KL_PSAR_FLIP_BEAR#DAY1');
-event: CROSS(aggEvent, 0.5);</Code>
-              <Params />
-            </Program>
-            <Program Name="KL_SCAN_PSAR_FLIP_BULL_1D">
-              <FullName />
-              <Description />
-              <Code>aggEvent: FML('My.KL_PSAR_FLIP_BULL#DAY1');
-event: CROSS(aggEvent, 0.5);</Code>
               <Params />
             </Program>
           </Programs>
@@ -1683,13 +1573,13 @@ SD1:= STD(RLxSLPE, Lookback);
 AV1:= MA(RLxSLPE, Lookback);
  
 Z1: (RLxSLPE-AV1)/SD1;
- zp1: 1;
-zp2: 2;
-zp3: 3;
-zn1: -1;
-zn2: -2;
-zn3: -3;
-zero: 0;
+ 1;
+2;
+3;
+-1;
+-2;
+-3;
+0;
 
  </Code>
               <Params>
@@ -2157,13 +2047,13 @@ INDEX30_10_1000_SD:= STD(INDEX30_10, 1000);
 
 ZSCORE_EIX:  (INDEX30_10 - INDEX30_10_1000)/INDEX30_10_1000_SD, COLORSTICK;
 
-Z0: 0;
-Z1: 1;
-Z2: 2;
-Z3: 3;
-ZN1: -1;
-ZN2: -2;
-ZN3: -3; </Code>
+0;
+1;
+2;
+3;
+-1;
+-2;
+-3; </Code>
               <Params />
             </Program>
           </Programs>
@@ -2242,116 +2132,6 @@ NDX0: 0;</Code>
           <Programs />
           <GroupOnly>true</GroupOnly>
         </Namespace>
-        <Namespace Name="SPECIAL" Description="">
-          <Namespaces />
-          <Programs>
-            <Program Name="KL_SCAN_MACD_BULL">
-              <FullName />
-              <Description />
-              <Code>MACD:= EMA(CLOSE,FASTPERIOD) - EMA(CLOSE,SLOWPERIOD);
-SIG := EMA(MACD,M),Width2,ColorBlue;
-HIST:= (MACD-SIG), COLORSTICK;
-
-MID:=  MA(SIG,BB_PERIOD),Width2,ColorGreen;
-UPPER:=MID + N_BB_STD*STDP(SIG,BB_PERIOD);
-LOWER:= MID - N_BB_STD*STDP(SIG,BB_PERIOD);
-
-SIG_LONG:= SIG &gt; REF(SIG, 1 ) &amp; REF(SIG,1) &lt;0;
-MID_UNDER:= MID &lt; 0;
-
-EVENT: Cross(SIG_LONG, MID_UNDER);
-
-
-</Code>
-              <Params>
-                <FormulaParam Name="FASTPERIOD" DefaultValue="4" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="SLOWPERIOD" DefaultValue="30" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="M" DefaultValue="5" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="BB_PERIOD" DefaultValue="3" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="N_BB_STD" DefaultValue="1" MinValue="0.1" MaxValue="10000" Description="" Step="" ParamType="double" />
-              </Params>
-            </Program>
-            <Program Name="KL_SCAN_MACD_BEAR">
-              <FullName />
-              <Description />
-              <Code>MACD:= EMA(CLOSE,FASTPERIOD) - EMA(CLOSE,SLOWPERIOD);
-SIG := EMA(MACD,M),Width2,ColorBlue;
-HIST:= (MACD-SIG), COLORSTICK;
-
-MID:=  MA(SIG,BB_PERIOD),Width2,ColorGreen;
-UPPER:=MID + N_BB_STD*STDP(SIG,BB_PERIOD);
-LOWER:= MID - N_BB_STD*STDP(SIG,BB_PERIOD);
-
-SIG_LONG:= SIG &lt; REF(SIG, 1 ) &amp; REF(SIG,1) &gt; 0;
-MID_UNDER:= MID &gt; 0;
-
-EVENT: Cross(SIG_LONG, MID_UNDER);
-
-
-
- </Code>
-              <Params>
-                <FormulaParam Name="FASTPERIOD" DefaultValue="4" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="SLOWPERIOD" DefaultValue="30" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="M" DefaultValue="5" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="BB_PERIOD" DefaultValue="3" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="N_BB_STD" DefaultValue="1" MinValue="0.1" MaxValue="10000" Description="" Step="" ParamType="double" />
-              </Params>
-            </Program>
-            <Program Name="KL_SCAN_MACD_BEAR_3D">
-              <FullName />
-              <Description />
-              <Code>aggEvent:= FML('My.KL_SCAN_MACD_BEAR#DAY3');
-event: CROSS(aggEvent, 0.5);</Code>
-              <Params />
-            </Program>
-            <Program Name="KL_SCAN_MACD_BULL_3D">
-              <FullName />
-              <Description />
-              <Code>aggEvent:= FML('My.KL_SCAN_MACD_BULL#DAY3');
-event: CROSS(aggEvent, 0.5);</Code>
-              <Params />
-            </Program>
-            <Program Name="KL_SCAN_MACD_BULL_9D">
-              <FullName />
-              <Description />
-              <Code>aggEvent:= FML('My.KL_SCAN_MACD_BULL#DAY9');
-event: CROSS(aggEvent, 0.5);</Code>
-              <Params />
-            </Program>
-            <Program Name="KL_SCAN_MACD_BEAR_9D">
-              <FullName />
-              <Description />
-              <Code>aggEvent:= FML('My.KL_SCAN_MACD_BEAR#DAY9');
-event: CROSS(aggEvent, 0.5);</Code>
-              <Params />
-            </Program>
-            <Program Name="KL_MACD_43005">
-              <FullName />
-              <Description />
-              <Code>MACD: EMA(CLOSE,FASTPERIOD) - EMA(CLOSE,SLOWPERIOD);
-SIG : EMA(MACD,M),Width2,ColorBlue;
-HIST: (MACD-SIG), COLORSTICK;
-
-MID:  MA(SIG,BB_PERIOD),Width2,ColorGreen;
-UPPER: MID + N_BB_STD*STDP(SIG,BB_PERIOD);
-LOWER: MID - N_BB_STD*STDP(SIG,BB_PERIOD);
-
-
-
-
-</Code>
-              <Params>
-                <FormulaParam Name="FASTPERIOD" DefaultValue="4" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="SLOWPERIOD" DefaultValue="30" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="M" DefaultValue="5" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="BB_PERIOD" DefaultValue="3" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="N_BB_STD" DefaultValue="1" MinValue="0.1" MaxValue="10000" Description="" Step="" ParamType="double" />
-              </Params>
-            </Program>
-          </Programs>
-          <GroupOnly>true</GroupOnly>
-        </Namespace>
         <Namespace Name="WMB_XD" Description="WMB3 ON DAILY">
           <Namespaces />
           <Programs>
@@ -2389,108 +2169,6 @@ EVENT: Cross(LONG, 0.5);
                 <FormulaParam Name="M" DefaultValue="5" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
                 <FormulaParam Name="N_WMR" DefaultValue="10" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
                 <FormulaParam Name="WMR_Threshold" DefaultValue="-80" MinValue="-120" MaxValue="120" Description="" Step="" ParamType="double" />
-              </Params>
-            </Program>
-          </Programs>
-          <GroupOnly>true</GroupOnly>
-        </Namespace>
-        <Namespace Name="SIM_WITH_STOPS" Description="">
-          <Namespaces />
-          <Programs>
-            <Program Name="KL_SIM_WMBD_wstop">
-              <FullName />
-              <Description />
-              <Code> 
-MACD:= EMA(CLOSE,FASTPERIOD) - EMA(CLOSE,SLOWPERIOD);
-SIG := EMA(MACD,M),Width2,ColorBlue;
-HIST:= (MACD-SIG), COLORSTICK;
-
-//MACD_UPTICK:  CROSS( (HIST &lt;0) &amp;  (HIST &gt; REF(HIST,1)), 0.5) ;
-MACD_UPTICK:=  (HIST &lt;0) &amp;  (HIST &gt; REF(HIST,1)) ;
-
-
-// WILLIAMS %R (10)
-
-WMR:=  -100*(HHV(HIGH,N_WMR)-CLOSE)/(HHV(HIGH,N_WMR)-LLV(LOW,N_WMR));
-
-WMR_OVERSOLD:= (WMR &lt; WMR_Threshold) &amp; (WMR &gt; REF(WMR,1) );
-
-//  Breakout
-
-BREAKOUT:= H &gt; REF(H,1);
-
-//
-LONG:= WMR_OVERSOLD &amp; MACD_UPTICK &amp; BREAKOUT;
-
-//EVENT: Cross(LONG, 0.5);
-
-
-// Method using Scripted Entry and exit rules
-//P:= PSAR(0.02, 0.2);
-
-// Entry Event is theWMB signal
-EntryEvent: CROSS(LONG, 0.5);
-
-// Entry price is the Close price on the entry bar
-EntryPrice: VALUEWHEN(C, EntryEvent);
-
-// Regular Exit event is the BEAR PSAR flip    PSAR SWITCH EXIT 1-YES, 0- NO
-RegularExitEvent: PSAR_EXIT &amp; Cross(PSAR_F(LRC(C, 10),0.02, 0.14),LRC(C, 10));
-
-// Regular Exit price is the close price on the Exit bar
-RegularExitPrice: VALUEWHEN(C, RegularExitEvent);
-
-// Stop Exit Event is if Close Price &lt; Entry Price - XATR
-
-TR:= MAX(H - L, ABS(REF(C, 1) - H), ABS(REF(C, 1) - L));
-MATR:= MA(TR, 14);
-RSTOP:= XATR * MATR;
-
-StopExitEvent: C &lt; EntryPrice - RSTOP;
-
-
-
-// Stop Exit price is the Close of the Stop event bar
-StopPrice: VALUEWHEN(C, StopExitEvent);
-
-// Actual Exit event is either regular exit OR Stop exit
-ActualExitEvent: RegularExitEvent| StopExitEvent;
-
-// Actual Exit Price is either Regular exit price or stop exit price
-ActualExitPrice: IF(StopExitEvent, StopPrice, RegularExitPrice);
-
-// Assign each of the lines to a trade simulation attribute
-// Then you can run this script to generate entries AND exits
-// And choosed 'Use Scripted Entry and Exit rules
-@SETATTR(EntryEvent, 'LongEntryEvent');
-@SETATTR(EntryPrice, 'LongEntryPrice');
-@SETATTR(ActualExitEvent,  'LongExitEvent');
-@SETATTR(ActualExitPrice, 'LongExitPrice');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</Code>
-              <Params>
-                <FormulaParam Name="FASTPERIOD" DefaultValue="10" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="SLOWPERIOD" DefaultValue="30" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="M" DefaultValue="5" MinValue="1" MaxValue="1000" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="N_WMR" DefaultValue="10" MinValue="1" MaxValue="10000" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="WMR_Threshold" DefaultValue="-80" MinValue="-120" MaxValue="120" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="XATR" DefaultValue="2" MinValue="1" MaxValue="100" Description="" Step="" ParamType="double" />
-                <FormulaParam Name="PSAR_EXIT" DefaultValue="1" MinValue="0" MaxValue="1" Description="" Step="" ParamType="double" />
               </Params>
             </Program>
           </Programs>
